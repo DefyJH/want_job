@@ -1,0 +1,24 @@
+@charset "UTF-8";
+
+* {
+	margin : 0;
+	padding : 0;
+	box-sizing: border-box;
+}
+
+#topNav {
+	width : 100%;
+	height: 70px;
+	
+	background-color: #fcf5e3;
+}
+
+#login {
+	display:flex;
+	justify-content:flex-end;
+}
+
+#login > a {
+	margin : 10px 10px;
+	margin-right : 15px;
+}
