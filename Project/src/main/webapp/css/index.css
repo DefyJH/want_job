@@ -23,7 +23,7 @@
 	margin-right : 15px;
 }
 
-#selectBar {
+.selectbar {
 	list-style-type : none;
 	
 	display : flex;
@@ -34,11 +34,13 @@
 	margin-bottom:20px;
 }
 
-#selectBar > li {
+.selectbar > button {
 	width : 16.65%;
 	height : 4vw;
 	
 	border : 1px solid black;
+	
+	background-color:white;
 
 	display : flex;
 	justify-content:center;
@@ -54,9 +56,10 @@
 
 .tripbox {
 	width : 21vw;
-	height : 28vw;
+	height : 25vw;
 	
 	border : 1px solid black;
+	background-color:white;
 
 	display : flex;
 	flex-wrap : wrap;
@@ -65,8 +68,42 @@
 	align-self:center;
 	
 	margin : 10px 0.5vw;
+	
+	padding : 10px;
 }
 
-.tripbox > p {
+.img {
+	width : 95%;
+	height : 60%;
+	background-repeat : no-reapeat;
+	background-size : cover;
+	background-position : center;
+	
+	margin-bottom : 20px;
+}
+
+#tripTitle {
+	height : 20%;
+	text-align:center;
+}
+
+#add {
+	display : block;
+	
+	width : 100%;
+	height : 5vw;
+	
+	border : 0;
+	outline: 0;
+}
+
+/* .tripbox > p {
 	margin : 10px;
+} */
+
+#map {
+	width: 100%;
+	height: 50vw;
+	background-color: lightgray;
+	margin: 20px 0;
 }
