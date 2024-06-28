@@ -107,7 +107,9 @@ public class TravelDestinationDAO {
 		try {
 			conn = DBConnectionManager.connectDB();
 
-			String query = " SELECT * FROM travel_destination WHERE areacode = ? ORDER BY contenttypeid, contentid";
+			String query = " SELECT * FROM travel_destination"
+							+ " WHERE areacode = ? AND contentId IN (SELECT contentid FROM travel_detail WHERE overview IS NOT NULL) "
+							+ " ORDER BY contenttypeid, contentid ";
 			
 			psmt = conn.prepareStatement(query);
 			psmt.setInt(1, areaCode);
@@ -148,6 +150,102 @@ public class TravelDestinationDAO {
 
 	}
 	
+	
+	public List<TravelDestinationDTO> findOtherTravelDestination(int areaCode, int sigungucode, int contentid) {
+
+		List<TravelDestinationDTO> otdList = null;
+
+		try {
+			conn = DBConnectionManager.connectDB();
+
+			String query = " SELECT * FROM travel_destination "
+							+ " WHERE areacode = ? AND sigungucode = ?  AND NOT contentid = ?  AND contentId IN (SELECT contentid FROM travel_detail WHERE overview IS NOT NULL) ";
+			
+			psmt = conn.prepareStatement(query);
+			psmt.setInt(1, areaCode);
+			psmt.setInt(2, sigungucode);
+			psmt.setInt(3, contentid);
+
+			rs = psmt.executeQuery(); // 쿼리 DB전달 실행
+
+			while (rs.next()) { // 더이상 가져올 데이터가 없을때까지~
+				
+				if(otdList == null)
+					otdList = new ArrayList<TravelDestinationDTO>();
+				
+				TravelDestinationDTO td = new TravelDestinationDTO(
+							rs.getString("addr1"),
+							rs.getString("addr2"),
+							rs.getInt("areacode"),
+							rs.getInt("contentid"),
+							rs.getInt("contenttypeid"),
+							rs.getString("firstimage"),
+							rs.getString("secondimage"),
+							rs.getString("mapX"),
+							rs.getString("mapY"),
+							rs.getString("mlevel"),
+							rs.getInt("sigungucode"),
+							rs.getString("tel"),
+							rs.getString("title"));
+				
+				otdList.add(td);
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			DBConnectionManager.disconnectDB(conn, psmt, rs);	//conn psmt rs
+		}
+
+		return otdList;
+
+	}
+
+	public TravelDestinationDTO findTravelDestinationByContentId(int contentId) {
+
+		TravelDestinationDTO td = null;
+
+		try {
+			conn = DBConnectionManager.connectDB();
+
+			String query = " SELECT * FROM travel_destination " +
+							" WHERE contentid = ? AND contentId IN (SELECT contentid FROM travel_detail WHERE overview IS NOT NULL)";
+			
+			psmt = conn.prepareStatement(query);
+			psmt.setInt(1, contentId);
+
+			rs = psmt.executeQuery(); // 쿼리 DB전달 실행
+
+			while (rs.next()) { // 더이상 가져올 데이터가 없을때까지~
+				
+				td = new TravelDestinationDTO(
+							rs.getString("addr1"),
+							rs.getString("addr2"),
+							rs.getInt("areacode"),
+							rs.getInt("contentid"),
+							rs.getInt("contenttypeid"),
+							rs.getString("firstimage"),
+							rs.getString("secondimage"),
+							rs.getString("mapX"),
+							rs.getString("mapY"),
+							rs.getString("mlevel"),
+							rs.getInt("sigungucode"),
+							rs.getString("tel"),
+							rs.getString("title"));
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			DBConnectionManager.disconnectDB(conn, psmt, rs);	//conn psmt rs
+		}
+
+		return td;
+
+	}
+
 	public List<TravelDestinationDTO> getTravelDestinationList() {
 
 		List<TravelDestinationDTO> tdList = null;
@@ -155,7 +253,9 @@ public class TravelDestinationDAO {
 		try {
 			conn = DBConnectionManager.connectDB();
 
-			String query = " SELECT * FROM travel_destination ORDER BY contenttypeid, contentid";
+			String query = " SELECT * FROM travel_destination "
+						+ " WHERE contentId IN (SELECT contentid FROM travel_detail WHERE overview IS NOT NULL) "
+						+ " ORDER BY contenttypeid, contentid ";
 			
 			psmt = conn.prepareStatement(query);
 

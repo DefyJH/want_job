@@ -1,4 +1,4 @@
-package travelDB.util;
+package userDB.util;
 
 import java.sql.Timestamp;
 import java.time.LocalDate;

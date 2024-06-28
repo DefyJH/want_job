@@ -4,27 +4,51 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	
+	color : #333333;
 }
 
 #topNav {
-	width: 100%;
+	width : 100%;
 	height: 70px;
-	background-color: #fcf5e3;
+	
+	background-color: #333333;
+	color: white;
+	padding: 10px;
+	text-align: right;
+	
+	display : flex;
+	justify-content : space-between;
 }
 
-#login {
-	display: flex;
-	justify-content: flex-end;
+#gotoMain {
+	text-decoration: none;
+	
+	font-size:2rem;
+	font-weight : bold;
+	
+	color : white;
+	
+	margin-left : 15px;
 }
 
-#login>a {
-	margin: 10px 10px;
-	margin-right: 15px;
+#login > a {
+	margin : 10px 10px;
+	margin-right : 15px;
+	
+	text-decoration: none;
+	color: white;
+}
+
+#nicname {
+	color : rgb(252, 229, 173);
+	
+	font-weight : bold;
 }
 
 #title {
 	text-align: center;
-	margin: 0 20px;
+	margin: 20px 0;
 }
 
 #title>p {
@@ -36,16 +60,24 @@
 	display: flex;
 	flex-wrap: wrap;
 	list-style-type: none;
-	margin: 20px 50px;
+	
+	justify-content : center;
 }
 
-#detailNav>li {
-	width: 25%;
-	height: 4vw;
-	border: 1px solid black;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+#detailNav>button {
+	width : 15%;
+	height : 5vw;
+	
+	padding: 8px 16px;
+	margin: 5px;
+	
+	background-color: rgb(252, 229, 173);
+	color: rgb(0, 0, 0);
+	
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	font-size: 16px;
 }
 
 #travelImg {
@@ -62,12 +94,13 @@
 	/*text-align: center;*/
 }
 
-#detailInfo>img {
-	margin: 20px 0;
-}
-
 #detailInfo>div {
 	margin: 50px 0;
+}
+
+#detailInfo>img {
+	margin-top: 30px;
+	padding : 0 20px;
 }
 
 #travelInfo>ul {
@@ -91,8 +124,8 @@
 .facBox {
 	width: 15vw;
 	height: 7vw;
-	background-color: #f0f2f4;
-	border-radius: 10%;
+	background-color:rgb(252, 229, 173);
+	border-radius: 10px;
 	margin-right: 20px;
 	display: flex;
 	justify-content: center;
@@ -114,4 +147,178 @@
 	height: 50vw;
 	background-color: lightgray;
 	margin: 20px 0;
+}
+
+#review {
+	margin: 50px;
+}
+
+#reviewBox {
+	width: 100%;
+	height: 20vw;
+	
+	background-color : #EAEAEA;
+	
+	margin-top : 20px;
+	padding : 20px;
+	
+	display : flex;
+	flex-wrap : wrap;
+	flex-direction : row-reverse;
+	
+	 align-content : center;
+}
+
+#reviewBox > textarea {
+	resize: none;
+	
+	width: 100%;
+	height:10vw;
+	
+	border : 1px solid lightgray;
+	
+	padding : 10px;
+}
+
+#registerPhoto {
+	width: 10%;
+	height: 4vw;
+	
+	border-radius: 8%;
+	
+	border : 1px solid lightgray;
+	background-color : white;
+	
+	color : lightgray;
+	
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	
+	margin-top : 10px;
+}
+
+#register {
+	width: 10%;
+	height: 4vw;
+	
+	border-radius: 8%;
+	
+	border : 1px solid white;
+	background-color : #13294B;
+	
+	color : white;
+	
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	
+	margin-top : 10px;
+	margin-left : 10px;
+}
+
+#noReview {
+	padding : 10px;
+	margin-top : 30px;
+	margin-bottom : 100px;
+	
+	text-align : center;
+}
+
+.userReview {
+	padding : 10px;
+	
+	margin-top : 5px;
+	margin-bottom : 10px;
+}
+
+
+.userReview > p {
+	
+	margin-bottom:5px;
+}
+
+.userReview > span {
+	font-size : 0.8rem;
+	
+	color : gray;
+}
+
+hr {
+	margin : 10px 0;
+	
+	border : 1px solid rgb(252, 229, 173);
+}
+
+#review > hr {
+	margin : 0;
+	margin-top : 10px;
+	
+	border : 1px solid gray;
+	
+	opacity : 0.5;
+}
+
+#otherTrip {
+	margin: 50px;
+}
+
+#otherTripContainer {
+	display : flex;
+}
+
+#tripView {
+	display : flex;
+	flex-wrap : wrap;
+	
+	justify-content:center;
+	
+	margin: 20px 0;
+}
+
+.tripbox {
+	width : 23vw;
+	height : 27vw;
+	
+	
+	border : 1.5px solid #333333;
+	background-color: white;
+	
+	border-radius: 4px;
+
+	display : flex;
+	flex-wrap : wrap;
+	justify-content:center;
+	align-content:center;
+	align-self:center;
+	
+	margin : 5px;
+	
+	padding : 20px 10px;
+	
+	cursor: pointer;
+	
+	opacity : 0.8;
+}
+
+.tripbox:hover {
+	border : 1.5px solid #333333;
+	color: rgb(255, 165, 0);
+	opacity : 1;
+}
+
+.img {
+	width : 90%;
+	height : 70%;
+	background-repeat : no-reapeat;
+	background-size : cover;
+	background-position : center;
+	
+	/* border-radius: 10px; */
+	
+	margin-bottom : 20px;
+}
+
+.sticky {
+	position: sticky;
 }

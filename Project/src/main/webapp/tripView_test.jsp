@@ -58,7 +58,8 @@
 			//where = 지역코드에 해당하는 여행지 size()로 반복
 		%>
 		<button class="tripbox" value="">
-			<div class="img" style="background-image:url('<%=tdList.get(i).getFirstimage()%>')"></div>
+			<div class="img"
+				style="background-image:url('<%=tdList.get(i).getFirstimage()%>')"></div>
 			<%-- <p><%=localList.get(areaCode-1).getName() %></p> --%>
 			<div id="tripTitle">
 				<h3><%=tdList.get(i).getTitle()%></h3>
@@ -94,7 +95,7 @@
 		
 		//더보기 클릭 시 파라미터로 viewList 값 변경해서 목록 더 보여주기
 		function addList() {
-			location.href = "tripView.jsp?areaCode="+<%=areaCode%>+"&viewList="+<%=viewList+20%>;
+			location.href = "tripView.jsp?areaCode="+<%=areaCode%>+"&viewList="+<%=viewList + 20%>;
 		}
 		
 		//ajax 활용해서 더보기 클릭시 목록 더 보여주기
