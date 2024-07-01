@@ -16,3 +16,22 @@
 1719380504909	Delete element
 1719380507818	Delete element
 1719380639578	Copy file
+1719382366743	Rename resource 'tripView.jsp'
+1719453013386	Rename package 'travelDB.jspJAVA'
+1719453050871	Delete element
+1719465180119	Delete element
+1719465603275	Copy compilation unit
+1719469768998	Move 'ratingTest.jsp' to 'WEB-INF'
+1719469771740	Move 'ratingTest.jsp' to 'webapp'
+1719469774682	Delete element
+1719469841053	Rename resource 'ratingTest.jsp'
+1719472064789	Copy file
+1719472071689	Rename resource 'index2.css'
+1719539274774	Rename type 'SignUpDAO'
+1719539280144	Rename type 'SignUpDTO'
+1719553803106	Delete element
+1719553903863	Copy compilation unit
+1719554244380	Delete element
+1719554246834	Delete element
+1719555940105	Rename resource 'logout.jsp'
+1719556189983	Delete element

@@ -1,4 +1,4 @@
-package travelDB.dao;
+package userDB.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,9 +7,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import travelDB.dto.ReviewDTO;
 import travelDB.util.ConvertDateUtil;
 import travelDB.util.DBConnectionManager;
+import userDB.dto.ReviewDTO;
 
 public class ReviewDAO {
 	
@@ -17,6 +17,36 @@ public class ReviewDAO {
 	PreparedStatement psmt;
 	ResultSet rs;
 
+	public int saveReview(int user_code, int contents_id, String review_text, String review_image, int review_rating) {
+		
+		int result = 0;
+
+		try {
+			conn = DBConnectionManager.connectDB();
+			
+			String query = " INSERT INTO REVIEW " +
+						" VALUES(review_seq.NEXTVAL, ?, ?, ?, ?, ?, sysdate) ";
+
+			psmt = conn.prepareStatement(query);
+			
+			psmt.setInt(1, user_code);
+			psmt.setInt(2, contents_id);
+			psmt.setString(3, review_text);
+			psmt.setString(4, review_image);
+			psmt.setInt(5, review_rating);
+
+			result = psmt.executeUpdate();	//쿼리 DB전달 실행
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConnectionManager.disconnectDB(conn, psmt, null);
+		}
+
+		return result;
+	}
+
+	
 	public List<ReviewDTO> findReviewByContenId(int contents_id) {
 
 		List<ReviewDTO> reviewList = null;

@@ -1,19 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
+
 <%@ page import="travelDB.dao.LocalCodeDAO"%>
 <%@ page import="travelDB.dao.TravelDestinationDAO"%>
 <%@ page import="travelDB.dao.ContentTypeDAO"%>
 <%@ page import="travelDB.dao.TravelDetailDAO"%>
-<%@ page import="travelDB.dao.ReviewDAO"%>
-<%@ page import="travelDB.dao.UserDateDAO"%>
+<%@ page import="userDB.dao.ReviewDAO"%>
+<%@ page import="userDB.dao.UserDateDAO"%>
 
 <%@ page import="travelDB.dto.LocalCodeDTO"%>
 <%@ page import="travelDB.dto.TravelDestinationDTO"%>
 <%@ page import="travelDB.dto.ContentTypeDTO"%>
 <%@ page import="travelDB.dto.TravelDetailDTO"%>
-<%@ page import="travelDB.dto.ReviewDTO"%>
-<%@ page import="travelDB.dto.UserDateDTO"%>
+<%@ page import="userDB.dto.ReviewDTO"%>
+<%@ page import="userDB.dto.UserDateDTO"%>
 
 <%@ page import="travelDB.util.ConvertDateUtil"%>
 <%@ page import="java.util.List"%>
@@ -33,37 +33,36 @@
 <body>
 	<%
 	request.setCharacterEncoding("UTF-8"); //문자인코딩 설정 한글깨짐 방지
-	
+
 	//콘텐츠ID 파라미터로 전달받음
 	int contentId = Integer.parseInt(request.getParameter("contentId"));
 
-	
 	//콘텐츠ID 기반 travel_destination DB정보 출력
 	TravelDestinationDAO tdDAO = new TravelDestinationDAO();
 	TravelDestinationDTO td = tdDAO.findTravelDestinationByContentId(contentId);
-	
+
 	//콘텐츠ID 기반 travel_detail DB정보 받음
 	TravelDetailDAO tddDAO = new TravelDetailDAO();
 	TravelDetailDTO tdd = tddDAO.findTravelDetailByContentId(contentId);
-	
+
 	//주소 addr2가 null인 경우
 	String address = null;
-	
-	if(td.getAddr2() != null) {
-		address = td.getAddr1()+td.getAddr2();
+
+	if (td.getAddr2() != null) {
+		address = td.getAddr1() + td.getAddr2();
 	} else {
 		address = td.getAddr1();
 	}
- 	
-	List<TravelDestinationDTO> otdList = tdDAO.findOtherTravelDestination(td.getAreacode(), td.getSigungucode(), td.getContentid());
 
-	
+	List<TravelDestinationDTO> otdList = tdDAO.findOtherTravelDestination(td.getAreacode(), td.getSigungucode(),
+			td.getContentid());
+
 	//otherTrip 리스트는 4개만 보여줄 예정
 	int otdListLegnth;
-	
+
 	//otherTrip 리스트가 4개보다 작을 경우 otdList Length를 otdList.size()로 설정
-	if (otdList.size() >= 4) {
-		otdListLegnth = 4;
+	if (otdList.size() >= 5) {
+		otdListLegnth = 5;
 	} else {
 		otdListLegnth = otdList.size();
 	}
@@ -91,41 +90,40 @@
 		if (td.getContenttypeid() == ct.getType_code())
 			contentName = "#" + ct.getType_name();
 	}
-	
+
 	//리뷰 DB 가져오기
 	ReviewDAO reviewDAO = new ReviewDAO();
 	List<ReviewDTO> reviewList = reviewDAO.findReviewByContenId(contentId);
-	
+
 	//유저 DB 가져오기
-	
+
 	UserDateDAO userDAO = new UserDateDAO();
 	List<UserDateDTO> userList = userDAO.getUserDataList();
-	
+
 	List<String> reviewNickname = new ArrayList<String>();
-	
-	if(reviewList != null) {
-		for(ReviewDTO rv : reviewList) {
-			for(UserDateDTO us : userList) {
-				if (us.getUser_code() == rv.getUser_code())
-					reviewNickname.add(us.getUser_nickname());
+
+	if (reviewList != null) {
+		for (ReviewDTO rv : reviewList) {
+			for (UserDateDTO us : userList) {
+		if (us.getUser_code() == rv.getUser_code())
+			reviewNickname.add(us.getUser_nickname());
 			}
 		}
 	}
-	
+
 	//리뷰 리스트 표시 내용
 	//otherTrip 리스트는 4개만 보여줄 예정
 	int reviewListLegnth = 0;
-	
+
 	//otherTrip 리스트가 4개보다 작을 경우 otdList Length를 otdList.size()로 설정
-	if(reviewList == null) {
+	if (reviewList == null) {
 		reviewListLegnth = 0;
-	}else if (reviewList.size() >= 5) {
+	} else if (reviewList.size() >= 5) {
 		reviewListLegnth = 5;
 	} else {
 		reviewListLegnth = reviewList.size();
 	}
-	
-	
+
 	// 세션에서 닉네임과 코드 가져오기
 	String nickname = (String) session.getAttribute("user_nickname");
 	Integer code = (Integer) session.getAttribute("user_code");
@@ -134,11 +132,19 @@
 	<div id="topNav">
 		<a id="gotoMain" href="index.jsp">메인화면</a>
 		<div id=login>
-		<%if (nickname != null && code != null) { %>
-			<a href=""> <span id='nicname'><%=nickname %></span> 님</a> | <a href="">마이페이지</a> | <a href="logout_action.jsp">로그아웃</a>
-		<%} else { %>
-			<a href="login.jsp">로그인</a> | <a href="signup.jsp">회원가입</a> | <a href="">마이페이지</a>
-		<% } %>
+			<%
+			if (nickname != null && code != null) {
+			%>
+			<a href=""> <span id='nicname'><%=nickname%></span> 님
+			</a> | <a href="">마이페이지</a> | <a href="logout_action.jsp">로그아웃</a>
+			<%
+			} else {
+			%>
+			<a href="login.jsp">로그인</a> | <a href="signup.jsp">회원가입</a> | <a
+				href="">마이페이지</a>
+			<%
+			}
+			%>
 		</div>
 	</div>
 
@@ -153,9 +159,9 @@
 			<button type="button" onclick="moveImg()">사진</button>
 			<button type="button" onclick="moveInfo()">기본정보</button>
 			<button type="button" onclick="moveFacInfo()">무장애편의정보</button>
-			<button type="button" onclick="moveMap()" )>지도</button>
-			<button type="button" onclick="moveReview()" )>여행후기</button>
-			<button type="button" onclick="moveOther()" )>다른여행지</button>
+			<button type="button" onclick="moveMap()">지도</button>
+			<button type="button" onclick="moveReview()">여행후기</button>
+			<button type="button" onclick="moveOther()">다른여행지</button>
 		</div>
 	</div>
 
@@ -168,19 +174,24 @@
 		<div id="tag">
 			<h2>태그</h2>
 			<hr />
-			<span onclick="moveSelectArea()"><%=areaName%></span> <span onclick="moveSelectContent()"><%=contentName%></span>
+			<span onclick="moveSelectArea()"><%=areaName%></span> <span
+				onclick="moveSelectContent()"><%=contentName%></span>
 		</div>
 
 		<div id="travelInfo">
 			<h2>상세정보</h2>
 			<hr />
-			<p><%=tdd.getOverview() %></p>
+			<p><%=tdd.getOverview()%></p>
 			<hr />
 			<ul>
 				<li>✅ 주소 : <%=address%></li>
-				<% if(tdd.getHomepage() != null) { %>
-				<li>✅ 홈페이지 : <%=tdd.getHomepage() %></li>
-				<% } %>
+				<%
+				if (tdd.getHomepage() != null) {
+				%>
+				<li>✅ 홈페이지 : <%=tdd.getHomepage()%></li>
+				<%
+				}
+				%>
 				<!-- 
 				잠시 보류(개선사항...)
 				<li>✅ 이용시간 : 상시 이용 가능, 미사 시간에는 조용히 관람할 것 *풍수원성당 관광객 참여 가능 미사 시간
@@ -241,42 +252,80 @@
 	<div id="review">
 		<h2>이용자 리뷰</h2>
 		<hr />
-		<%if (nickname != null && code != null) { %>
-		<div id="reviewBox">
-			<textarea placeholder="여행 후기를 남겨주세요."></textarea>
-			<div id="register">등록</div>
-			<div id="registerPhoto">
-				<i class="fa-solid fa-camera"></i>
+		<%
+		if (nickname != null && code != null) {
+		%>
+		<form class="reviewBox" action="reviewAdd_action.jsp" method="get">
+			<input type="hidden" name="user_code" value="<%=code%>">
+			<input type="hidden" name="contents_id" value="<%=contentId%>">
+			<textarea placeholder="여행 후기를 남겨주세요." name="review_text"></textarea>
+			<div class="registerBox">
+				
+				<button type="submit" class="register">등록</button>
+				<label for="fileUp">
+					<div class="registerPhoto"><i class="fa-solid fa-camera"></i></div>
+				</label>
+				<input type="file" accept="image/*" name="review_image" id="fileUp">
 			</div>
-		</div>
-		
-		<%} else { %>
-		<div id="reviewBox">
+			<div class="rating">
+				평점 : 
+				<span class="star star1" onmouseover="highlightStar(1)" onmouseout="resetStars()" onclick="rating(1)">&#9733;</span>
+        		<span class="star star2" onmouseover="highlightStar(2)" onmouseout="resetStars()" onclick="rating(2)">&#9733;</span>
+        		<span class="star star3" onmouseover="highlightStar(3)" onmouseout="resetStars()" onclick="rating(3)">&#9733;</span>
+        		<span class="star star4" onmouseover="highlightStar(4)" onmouseout="resetStars()" onclick="rating(4)">&#9733;</span>
+        		<span class="star star5" onmouseover="highlightStar(5)" onmouseout="resetStars()" onclick="rating(5)">&#9733;</span>
+        		<input type="hidden" name="review_rating" id="ratingInput">
+			</div>
+		</form>
+
+		<%
+		} else {
+		%>
+		<div class="reviewBox">
 			<textarea placeholder="로그인 후 여행 후기를 작성해주세요." onclick="movelogin()"></textarea>
-			<div id="register">등록</div>
-			<div id="registerPhoto">
-				<i class="fa-solid fa-camera"></i>
+			<div class="registerBox">
+				<button type="submit" class="register" onclick="movelogin()">등록</button>
+				<div class="registerPhoto" onclick="movelogin()">
+					<i class="fa-solid fa-camera"></i>
+				</div>
+			</div>
+			<div class="rating">
+				평점 : 
+				<span class="star1" onclick="movelogin()">&#9733;</span>
+        		<span class="star2" onclick="movelogin()">&#9733;</span>
+        		<span class="star3" onclick="movelogin()">&#9733;</span>
+        		<span class="star4" onclick="movelogin()">&#9733;</span>
+        		<span class="star5" onclick="movelogin()">&#9733;</span>
 			</div>
 		</div>
-		<% } %>
-		<% if(reviewList == null) { %>
+		<%
+		}
+		%>
+		<%
+		if (reviewList == null) {
+		%>
 		<div id="noReview">
 			<p>등록된 리뷰가 없습니다. 리뷰를 등록해주세요.</p>
 		</div>
 
-		<% } else {
-		
-			for (int i=0; i<reviewListLegnth; i++) { %>
+		<%
+		} else {
+
+		for (int i = 0; i < reviewListLegnth; i++) {
+		%>
 
 		<div class="userReview">
-			<img>
-			<p><%=reviewList.get(i).getReview_text() %></p>
-			<span><%=reviewNickname.get(i) %></span> <span> | </span> <span><%=ConvertDateUtil.convertLocalDateTimeToString4(reviewList.get(i).getReview_date()) %></span>
+			<% if(reviewList.get(i).getReview_image() != null) { %>
+			<img src="./image/<%=reviewList.get(i).getReview_image()%>" width="50%">
+			<% } %>
+			<p><%=reviewList.get(i).getReview_text()%></p>
+			<span><%=reviewNickname.get(i)%></span> <span> | </span> <span><%=ConvertDateUtil.convertLocalDateTimeToString4(reviewList.get(i).getReview_date())%></span>
 		</div>
 		<hr />
 
-		<% 	}
-			
+		<%
+		}
+
 		}
 		%>
 
@@ -459,6 +508,17 @@
 			alert('로그인 창으로 이동합니다.')
 			location.href = "login.jsp";
 		}
+		
+		//저장될 평점
+		let selectedRating = 0;
+		
+		//평점 클릭 시 이벤트
+		function rating(ratingratingValue) {
+			
+			selectedRating = ratingratingValue*20;
+			document.getElementById('ratingInput').value = selectedRating; // 별점 값을 hidden input에 설정
+        }
+		
 	</script>
 </body>
 </html>

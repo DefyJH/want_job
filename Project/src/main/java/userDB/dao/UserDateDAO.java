@@ -1,4 +1,4 @@
-package travelDB.dao;
+package userDB.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import travelDB.dto.LocalCodeDTO;
-import travelDB.dto.UserDateDTO;
 import travelDB.util.ConvertDateUtil;
 import travelDB.util.DBConnectionManager;
+import userDB.dto.UserDateDTO;
 
 public class UserDateDAO {
 

@@ -1,4 +1,4 @@
-package travelDB.dto;
+package userDB.dto;
 
 import java.time.LocalDateTime;
 

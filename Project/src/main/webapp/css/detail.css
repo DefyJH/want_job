@@ -32,9 +32,13 @@
 	margin-left : 15px;
 }
 
+#login {
+	color: white;
+}
+
 #login > a {
 	margin : 10px 10px;
-	margin-right : 15px;
+	margin-right : 10px;
 	
 	text-decoration: none;
 	color: white;
@@ -48,7 +52,7 @@
 
 #title {
 	text-align: center;
-	margin: 20px 0;
+	margin: 30px 0;
 }
 
 #title>p {
@@ -153,7 +157,7 @@
 	margin: 50px;
 }
 
-#reviewBox {
+.reviewBox {
 	width: 100%;
 	height: 20vw;
 	
@@ -165,11 +169,14 @@
 	display : flex;
 	flex-wrap : wrap;
 	flex-direction : row-reverse;
+	justify-content : space-between;
 	
-	 align-content : center;
+	/*  */
+	
+	align-content : center;
 }
 
-#reviewBox > textarea {
+.reviewBox > textarea {
 	resize: none;
 	
 	width: 100%;
@@ -180,8 +187,16 @@
 	padding : 10px;
 }
 
-#registerPhoto {
-	width: 10%;
+.registerBox {
+	width : 70%;
+	
+	display : flex;
+	flex-direction : row-reverse;
+	flex-wrap : wrap;
+}
+
+.registerPhoto {
+	width: 8vw;
 	height: 4vw;
 	
 	border-radius: 8%;
@@ -198,13 +213,17 @@
 	margin-top : 10px;
 }
 
-#register {
-	width: 10%;
+#fileUp {
+    display: none;
+}
+
+.register {
+	width: 8vw;
 	height: 4vw;
 	
 	border-radius: 8%;
 	
-	border : 1px solid white;
+	border : 0;
 	background-color : #13294B;
 	
 	color : white;
@@ -215,6 +234,26 @@
 	
 	margin-top : 10px;
 	margin-left : 10px;
+}
+
+.rating {
+	margin-top : 10px;
+}
+
+.rating span {
+	color: gray;
+	
+	font-size: 1.2rem;
+	
+	cursor: pointer;
+}
+
+.gold {
+	color : gold;
+}
+
+.gray {
+	color : gray;
 }
 
 #noReview {
