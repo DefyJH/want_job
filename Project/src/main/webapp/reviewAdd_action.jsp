@@ -25,15 +25,15 @@
 		if(result > 0) { %>
 		<script>
 			alert('리뷰 저장 성공');
-			window.history.back();
+			location.href = "detail.jsp?contentId="+<%=contents_id%>;
 		</script>
 		
 		<% } else { %>
 
 		<script>
 			alert('리뷰 저장 실패');
-			window.history.back();
-			</script>
+			location.href = "detail.jsp?contentId="+<%=contents_id%>;
+		</script>
 		
 		<% } %>
 </body>

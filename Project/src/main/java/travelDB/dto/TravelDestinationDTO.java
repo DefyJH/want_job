@@ -8,7 +8,7 @@ public class TravelDestinationDTO {
 	int contentid;	//콘텐츠ID
 	int contenttypeid;	//콘텐츠타입
 	String firstimage;	//이미지1
-	String firstimage2;	//이미지2
+	String secondimage;	//이미지2
 	String mapX;	//맵X축
 	String mapY;	//맵Y축
 	String mlevel;		//맵레벨?
@@ -32,8 +32,9 @@ public class TravelDestinationDTO {
 
 	public TravelDestinationDTO() {}
 
-	public TravelDestinationDTO(String addr1, String addr2, int areacode, int contentid, int contenttypeid, String firstimage,
-			String firstimage2, String mapX, String mapY, String mlevel, int sigungucode, String tel, String title) {
+	public TravelDestinationDTO(String addr1, String addr2, int areacode, int contentid, int contenttypeid,
+			String firstimage, String secondimage, String mapX, String mapY, String mlevel, int sigungucode, String tel,
+			String title) {
 		super();
 		this.addr1 = addr1;
 		this.addr2 = addr2;
@@ -41,7 +42,7 @@ public class TravelDestinationDTO {
 		this.contentid = contentid;
 		this.contenttypeid = contenttypeid;
 		this.firstimage = firstimage;
-		this.firstimage2 = firstimage2;
+		this.secondimage = secondimage;
 		this.mapX = mapX;
 		this.mapY = mapY;
 		this.mlevel = mlevel;
@@ -98,12 +99,12 @@ public class TravelDestinationDTO {
 		this.firstimage = firstimage;
 	}
 
-	public String getFirstimage2() {
-		return firstimage2;
+	public String getSecondimage() {
+		return secondimage;
 	}
 
-	public void setFirstimage2(String firstimage2) {
-		this.firstimage2 = firstimage2;
+	public void setSecondimage(String secondimage) {
+		this.secondimage = secondimage;
 	}
 
 	public String getMapX() {
@@ -154,7 +155,6 @@ public class TravelDestinationDTO {
 		this.title = title;
 	}
 
-
-
-
+	
+	
 }

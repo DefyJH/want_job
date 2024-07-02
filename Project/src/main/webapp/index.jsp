@@ -17,9 +17,6 @@
 	//Local DB 적용하면 됨
 	LocalCodeDAO localCodeDAO = new LocalCodeDAO();
 	List<LocalCodeDTO> localList = localCodeDAO.getLocalCodeList();
-
-	TravelDestinationDAO tdDAO = new TravelDestinationDAO();
-	List<TravelDestinationDTO> tdList = tdDAO.findTravelDestinationByAreacode(1);
 	
 	// 세션에서 닉네임과 코드 가져오기
 	String nickname = (String) session.getAttribute("user_nickname");

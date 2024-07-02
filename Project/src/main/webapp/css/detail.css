@@ -89,6 +89,22 @@
 	width: 100vw;
 }
 
+#imaContainer > hr {
+	margin : 10px 0;
+	border : 1px solid lightgray;
+}
+
+/* .preview {
+	width: 20vw;
+	opacity : 50%;
+	
+	margin-right : 10px;
+}
+
+.preview:hover {
+	opacity : 80%;
+} */
+
 #detailInfo li {
 	margin-top: 10px;
 }
@@ -240,20 +256,12 @@
 	margin-top : 10px;
 }
 
-.rating span {
-	color: gray;
+.star {
+	color : gray;
 	
 	font-size: 1.2rem;
 	
 	cursor: pointer;
-}
-
-.gold {
-	color : gold;
-}
-
-.gray {
-	color : gray;
 }
 
 #noReview {
@@ -361,3 +369,7 @@ hr {
 .sticky {
 	position: sticky;
 }
+
+.gold {
+     color: gold;
+ }

@@ -78,7 +78,7 @@ public class TravelDestinationDAO {
 				psmt.setInt(4, list.get(i).getContentid());
 				psmt.setInt(5, list.get(i).getContenttypeid());
 				psmt.setString(6, list.get(i).getFirstimage());
-				psmt.setString(7, list.get(i).getFirstimage2());
+				psmt.setString(7, list.get(i).getSecondimage());
 				psmt.setString(8, list.get(i).getMapX());
 				psmt.setString(9, list.get(i).getMapY());
 				psmt.setString(10, list.get(i).getMlevel());
@@ -106,10 +106,11 @@ public class TravelDestinationDAO {
 
 		try {
 			conn = DBConnectionManager.connectDB();
-
-			String query = " SELECT * FROM travel_destination"
-							+ " WHERE areacode = ? AND contentId IN (SELECT contentid FROM travel_detail WHERE overview IS NOT NULL) "
-							+ " ORDER BY contenttypeid, contentid ";
+			
+			String query = " SELECT * FROM travel_destination "
+					+ " WHERE areaCode = ?"
+					+ " AND contentid IN (SELECT contentid FROM TRAVEL_DETAIL) "
+					+ " AND contentid IN (SELECT contentid FROM DISABILITY_ACCOMMODATION_INFO) ";
 			
 			psmt = conn.prepareStatement(query);
 			psmt.setInt(1, areaCode);
@@ -209,8 +210,8 @@ public class TravelDestinationDAO {
 		try {
 			conn = DBConnectionManager.connectDB();
 
-			String query = " SELECT * FROM travel_destination " +
-							" WHERE contentid = ? AND contentId IN (SELECT contentid FROM travel_detail WHERE overview IS NOT NULL)";
+			String query = " SELECT * FROM travel_destination "
+							+ " WHERE contentid = ? ";
 			
 			psmt = conn.prepareStatement(query);
 			psmt.setInt(1, contentId);
@@ -252,11 +253,11 @@ public class TravelDestinationDAO {
 
 		try {
 			conn = DBConnectionManager.connectDB();
-
-			String query = " SELECT * FROM travel_destination "
-						+ " WHERE contentId IN (SELECT contentid FROM travel_detail WHERE overview IS NOT NULL) "
-						+ " ORDER BY contenttypeid, contentid ";
 			
+			String query = " SELECT * FROM travel_destination "
+					+ " WHERE contentid IN (SELECT contentid FROM TRAVEL_DETAIL) "
+					+ " AND contentid IN (SELECT contentid FROM DISABILITY_ACCOMMODATION_INFO) ";
+
 			psmt = conn.prepareStatement(query);
 
 			rs = psmt.executeQuery(); // 쿼리 DB전달 실행

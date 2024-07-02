@@ -3,10 +3,12 @@ package travelDB.main;
 import java.util.List;
 
 import travelDB.dao.ContentTypeDAO;
+import travelDB.dao.DisabilityInfoDAO;
 import travelDB.dao.LocalCodeDAO;
 import travelDB.dao.TravelDestinationDAO;
 import travelDB.dao.TravelDetailDAO;
 import travelDB.dto.ContentTypeDTO;
+import travelDB.dto.DisabilityInfoDTO;
 import travelDB.dto.LocalCodeDTO;
 import travelDB.dto.TravelDestinationDTO;
 import travelDB.dto.TravelDetailDTO;
@@ -89,6 +91,12 @@ public class Main {
 		for(UserDateDTO u : uList) {
 			System.out.println(u.getUser_code() + " " + u.getUser_nickname() + " " + ConvertDateUtil.convertLocalDateTimeToString4(u.getUser_signdate()));
 		}
+		
+		DisabilityInfoDAO diDAO = new DisabilityInfoDAO();
+		DisabilityInfoDTO di = diDAO.findDisabilityInfoByContentId(2465126);
+				
+		System.out.println("findDisabilityInfoByContentId(2465126)");
+		System.out.println(di.getContentid());
 		
 	}
 

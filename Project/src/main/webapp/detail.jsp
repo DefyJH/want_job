@@ -5,13 +5,16 @@
 <%@ page import="travelDB.dao.TravelDestinationDAO"%>
 <%@ page import="travelDB.dao.ContentTypeDAO"%>
 <%@ page import="travelDB.dao.TravelDetailDAO"%>
+<%@ page import="travelDB.dao.DisabilityInfoDAO"%>
 <%@ page import="userDB.dao.ReviewDAO"%>
 <%@ page import="userDB.dao.UserDateDAO"%>
+
 
 <%@ page import="travelDB.dto.LocalCodeDTO"%>
 <%@ page import="travelDB.dto.TravelDestinationDTO"%>
 <%@ page import="travelDB.dto.ContentTypeDTO"%>
 <%@ page import="travelDB.dto.TravelDetailDTO"%>
+<%@ page import="travelDB.dto.DisabilityInfoDTO"%>
 <%@ page import="userDB.dto.ReviewDTO"%>
 <%@ page import="userDB.dto.UserDateDTO"%>
 
@@ -127,6 +130,11 @@
 	// 세션에서 닉네임과 코드 가져오기
 	String nickname = (String) session.getAttribute("user_nickname");
 	Integer code = (Integer) session.getAttribute("user_code");
+
+	//무장애정보 리스트
+	DisabilityInfoDAO diDAO = new DisabilityInfoDAO();
+	DisabilityInfoDTO di = diDAO.findDisabilityInfoByContentId(contentId);
+	
 	%>
 
 	<div id="topNav">
@@ -166,9 +174,17 @@
 	</div>
 
 	<div id="detailInfo">
-		<!-- 이미지 슬라이드로 변경 예정 -->
-		<img class="travelImg" src="<%=td.getFirstimage()%>"
-			style="width: 100%; background-position: center;">
+		<div id="imaContainer">
+			<img id="travelImg" src="<%=td.getFirstimage()%>"
+				style="width: 100%; background-position: center;">
+			<%-- <hr />
+			<%if(td.getFirstimage().equals(td.getSecondimage()) == false) { %>
+			<img class="preview" src="<%=td.getFirstimage()%>"><img
+				class="preview" src="<%=td.getSecondimage()%>">
+			<%} else { %>
+			<img class="preview" src="<%=td.getFirstimage()%>">
+			<% } %> --%>
+		</div>
 
 
 		<div id="tag">
@@ -206,38 +222,132 @@
 			<h2>무장애 편의정보</h2>
 			<hr />
 			<div id="facInfo">
+
+				<%if(di.getParking() != null || di.getRoute() != null || di.getPublic_transport() != null
+						|| di.getTicket_office() != null || di.getPromotion() != null || di.getWheelchair() != null
+						|| di.getExit() != null || di.getElevator() != null || di.getRestroom() != null
+						|| di.getAuditorium() != null || di.getRoom() != null || di.getHandicap_etc() != null) { %>
 				<div>
 					<div class="facBox">지체장애</div>
 					<ul>
-						<li>✅ 안내요원 : 안내요원있음(매표소)</li>
-						<li>✅ 유도안내설비 : 핸드레잎 촉지판 있음(산책로)</li>
-						<li>✅ 시각장애 기타상세 : 3D 촉각모형 있음</li>
-						<!-- TRAVEL_INTRODUCTION에서 반복문 돌려서 정렬 -->
+						<%if(di.getParking() != null) { %>
+						<li>✅<%=di.getParking()%></li>
+						<% } %>
+						<%if(di.getRoute() != null) { %>
+						<li>✅<%=di.getRoute()%></li>
+						<% } %>
+						<%if(di.getPublic_transport() != null) { %>
+						<li>✅<%=di.getPublic_transport()%></li>
+						<% } %>
+						<%if(di.getTicket_office() != null) { %>
+						<li>✅<%=di.getTicket_office()%></li>
+						<% } %>
+						<%if(di.getPromotion() != null) { %>
+						<li>✅<%=di.getPromotion()%></li>
+						<% } %>
+						<%if(di.getWheelchair() != null) { %>
+						<li>✅<%=di.getWheelchair()%></li>
+						<% } %>
+						<%if(di.getExit() != null) { %>
+						<li>✅<%=di.getExit()%></li>
+						<% } %>
+						<%if(di.getElevator() != null) { %>
+						<li>✅<%=di.getElevator()%></li>
+						<% } %>
+						<%if(di.getRestroom() != null) { %>
+						<li>✅<%=di.getRestroom()%></li>
+						<% } %>
+						<%if(di.getAuditorium() != null) { %>
+						<li>✅<%=di.getAuditorium()%></li>
+						<% } %>
+						<%if(di.getRoom() != null) { %>
+						<li>✅<%=di.getRoom()%></li>
+						<% } %>
+						<%if(di.getHandicap_etc() != null) { %>
+						<li>✅<%=di.getHandicap_etc()%></li>
+						<% } %>
 					</ul>
 				</div>
+				<%} %>
 
+
+				<%if(di.getBraileblock() != null || di.getHelpdog() != null || di.getGuide_human() != null
+						|| di.getGuide_audio() != null || di.getBigprint() != null || di.getBrailepromotion() != null
+						|| di.getGuidesystem() != null || di.getBlindhandicap_etc() != null) { %>
 				<div>
 					<div class="facBox">시각장애</div>
 					<ul>
-						<li>✅ 주차여부 : 장애인 주차장 있음(3대/풍수원 성당 인근)_무장애 편의시설</li>
-						<li>✅ 핵심동선 : 출입구까지 경사로가 설치되어 있음(완만함)</li>
-						<li>✅ 매표소 : 매표소 있음</li>
-						<li>✅ 홍보물 : 열린관광지 리플렛 있음</li>
-						<li>✅ 화장실 : 장애인 화장실 있음(유현유물전시관 인근, 문화해설사의집 인근)</li>
-						<li>✅ 지체장애 기타 상세 : 일부 흙(돌) 구간 있음 / 교통약자를 위한 이동수단(전기관람차) 있음</li>
-						<!-- TRAVEL_INTRODUCTION에서 반복문 돌려서 정렬 -->
+						<%if(di.getBraileblock() != null) { %>
+						<li>✅<%=di.getBraileblock()%></li>
+						<% } %>
+						<%if(di.getHelpdog() != null) { %>
+						<li>✅<%=di.getHelpdog()%></li>
+						<% } %>
+						<%if(di.getGuide_human() != null) { %>
+						<li>✅<%=di.getGuide_human()%></li>
+						<% } %>
+						<%if(di.getGuide_audio() != null) { %>
+						<li>✅<%=di.getGuide_audio()%></li>
+						<% } %>
+						<%if(di.getBigprint() != null) { %>
+						<li>✅<%=di.getBigprint()%></li>
+						<% } %>
+						<%if(di.getBrailepromotion() != null) { %>
+						<li>✅<%=di.getBrailepromotion()%></li>
+						<% } %>
+						<%if(di.getGuidesystem() != null) { %>
+						<li>✅<%=di.getGuidesystem()%></li>
+						<% } %>
+						<%if(di.getBlindhandicap_etc() != null) { %>
+						<li>✅<%=di.getBlindhandicap_etc()%></li>
+						<% } %>
 					</ul>
 				</div>
+				<%} %>
 
+
+				<%if(di.getGuide_sign() != null || di.getGuide_video() != null
+						|| di.getHearingroom() != null || di.getHearinghandicapetc() != null) { %>
+				<div>
+					<div class="facBox">청각장애</div>
+					<ul>
+						<%if(di.getGuide_sign() != null) { %>
+						<li>✅<%=di.getGuide_sign()%></li>
+						<% } %>
+						<%if(di.getGuide_video() != null) { %>
+						<li>✅<%=di.getGuide_video()%></li>
+						<% } %>
+						<%if(di.getHearingroom() != null) { %>
+						<li>✅<%=di.getHearingroom()%></li>
+						<% } %>
+						<%if(di.getHearinghandicapetc() != null) { %>
+						<li>✅<%=di.getHearinghandicapetc()%></li>
+						<% } %>
+					</ul>
+				</div>
+				<% } %>
+
+				<%if(di.getStroller() != null || di.getLactationroom() != null
+						|| di.getBabysparechair() != null || di.getInfantsfamily_etc() != null) { %>
 				<div>
 					<div class="facBox">영유아가족</div>
 					<ul>
-						<li>✅ 안내요원 : 안내요원있음(매표소)</li>
-						<li>✅ 유도안내설비 : 핸드레잎 촉지판 있음(산책로)</li>
-						<li>✅ 시각장애 기타상세 : 3D 촉각모형 있음</li>
-						<!-- TRAVEL_INTRODUCTION에서 반복문 돌려서 정렬 -->
+						<%if(di.getStroller() != null) { %>
+						<li>✅<%=di.getStroller()%></li>
+						<% } %>
+						<%if(di.getLactationroom() != null) { %>
+						<li>✅<%=di.getLactationroom()%></li>
+						<% } %>
+						<%if(di.getBabysparechair() != null) { %>
+						<li>✅<%=di.getBabysparechair()%></li>
+						<% } %>
+						<%if(di.getInfantsfamily_etc() != null) { %>
+						<li>✅<%=di.getInfantsfamily_etc()%></li>
+						<% } %>
 					</ul>
 				</div>
+				<% } %>
+
 			</div>
 		</div>
 
@@ -256,25 +366,30 @@
 		if (nickname != null && code != null) {
 		%>
 		<form class="reviewBox" action="reviewAdd_action.jsp" method="get">
-			<input type="hidden" name="user_code" value="<%=code%>">
-			<input type="hidden" name="contents_id" value="<%=contentId%>">
+			<input type="hidden" name="user_code" value="<%=code%>"> <input
+				type="hidden" name="contents_id" value="<%=contentId%>">
 			<textarea placeholder="여행 후기를 남겨주세요." name="review_text"></textarea>
 			<div class="registerBox">
-				
+
 				<button type="submit" class="register">등록</button>
 				<label for="fileUp">
-					<div class="registerPhoto"><i class="fa-solid fa-camera"></i></div>
-				</label>
-				<input type="file" accept="image/*" name="review_image" id="fileUp">
+					<div class="registerPhoto">
+						<i class="fa-solid fa-camera"></i>
+					</div>
+				</label> <input type="file" accept="image/*" name="review_image" id="fileUp">
 			</div>
 			<div class="rating">
-				평점 : 
-				<span class="star star1" onmouseover="highlightStar(1)" onmouseout="resetStars()" onclick="rating(1)">&#9733;</span>
-        		<span class="star star2" onmouseover="highlightStar(2)" onmouseout="resetStars()" onclick="rating(2)">&#9733;</span>
-        		<span class="star star3" onmouseover="highlightStar(3)" onmouseout="resetStars()" onclick="rating(3)">&#9733;</span>
-        		<span class="star star4" onmouseover="highlightStar(4)" onmouseout="resetStars()" onclick="rating(4)">&#9733;</span>
-        		<span class="star star5" onmouseover="highlightStar(5)" onmouseout="resetStars()" onclick="rating(5)">&#9733;</span>
-        		<input type="hidden" name="review_rating" id="ratingInput">
+				평점 : <span class="star star1" onmouseover="highlightStar(1)"
+					onmouseout="resetStars()" onclick="rating(1)">&#9733;</span> <span
+					class="star star2" onmouseover="highlightStar(2)"
+					onmouseout="resetStars()" onclick="rating(2)">&#9733;</span> <span
+					class="star star3" onmouseover="highlightStar(3)"
+					onmouseout="resetStars()" onclick="rating(3)">&#9733;</span> <span
+					class="star star4" onmouseover="highlightStar(4)"
+					onmouseout="resetStars()" onclick="rating(4)">&#9733;</span> <span
+					class="star star5" onmouseover="highlightStar(5)"
+					onmouseout="resetStars()" onclick="rating(5)">&#9733;</span> <input
+					type="hidden" name="review_rating" id="ratingInput">
 			</div>
 		</form>
 
@@ -290,12 +405,11 @@
 				</div>
 			</div>
 			<div class="rating">
-				평점 : 
-				<span class="star1" onclick="movelogin()">&#9733;</span>
-        		<span class="star2" onclick="movelogin()">&#9733;</span>
-        		<span class="star3" onclick="movelogin()">&#9733;</span>
-        		<span class="star4" onclick="movelogin()">&#9733;</span>
-        		<span class="star5" onclick="movelogin()">&#9733;</span>
+				평점 : <span class="star1" onclick="movelogin()">&#9733;</span> <span
+					class="star2" onclick="movelogin()">&#9733;</span> <span
+					class="star3" onclick="movelogin()">&#9733;</span> <span
+					class="star4" onclick="movelogin()">&#9733;</span> <span
+					class="star5" onclick="movelogin()">&#9733;</span>
 			</div>
 		</div>
 		<%
@@ -316,7 +430,8 @@
 
 		<div class="userReview">
 			<% if(reviewList.get(i).getReview_image() != null) { %>
-			<img src="./image/<%=reviewList.get(i).getReview_image()%>" width="50%">
+			<img src="./image/<%=reviewList.get(i).getReview_image()%>"
+				width="50%">
 			<% } %>
 			<p><%=reviewList.get(i).getReview_text()%></p>
 			<span><%=reviewNickname.get(i)%></span> <span> | </span> <span><%=ConvertDateUtil.convertLocalDateTimeToString4(reviewList.get(i).getReview_date())%></span>
@@ -518,6 +633,26 @@
 			selectedRating = ratingratingValue*20;
 			document.getElementById('ratingInput').value = selectedRating; // 별점 값을 hidden input에 설정
         }
+		
+	    // 별점에 마우스를 올렸을 때 실행될 함수
+	    function highlightStar(ratingValue) {
+	        for (var i = 1; i <= ratingValue; i++) {
+	            var star = document.querySelector('.star' + i);
+	            star.classList.add('gold');
+	        }
+	    }
+		
+		function resetStars() {
+	        for (var i = 1; i <= 5; i++) {
+	            var star = document.querySelector('.star' + i);
+	            star.classList.remove('gold');
+	        }
+	        // 선택된 별점만 다시 gold로 표시
+	        for (var i = 1; i <= selectedRating; i++) {
+	            var star = document.querySelector('.star' + i);
+	            star.classList.add('gold');
+	        }
+	    }
 		
 	</script>
 </body>
