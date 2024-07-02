@@ -121,6 +121,8 @@ public class TravelDestinationDAO {
 				if(tdList == null)
 					tdList = new ArrayList<TravelDestinationDTO>();
 				
+				String title = rs.getString("title").replaceAll("\"", "\"");
+				
 				TravelDestinationDTO td = new TravelDestinationDTO(
 							rs.getString("addr1"),
 							rs.getString("addr2"),
@@ -295,4 +297,6 @@ public class TravelDestinationDAO {
 
 	}
 
+	
+	
 }
