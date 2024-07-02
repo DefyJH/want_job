@@ -18,13 +18,13 @@ public class DBConnectionManager {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 
 			// 2. DB Connection 연결정보
-			String dbUrl = "jdbc:oracle:thin:@localhost:1521:orcl";
-			String dbId = "scott";
-			String dbPw = "tiger";
+//			String dbUrl = "jdbc:oracle:thin:@localhost:1521:orcl";
+//			String dbId = "scott";
+//			String dbPw = "tiger";
 			
-//	         String dbUrl = "jdbc:oracle:thin:@192.168.0.53:1521:orcl";
-//	         String dbId = "scott2";
-//	         String dbPw = "scott2";
+	         String dbUrl = "jdbc:oracle:thin:@192.168.0.53:1521:orcl";
+	         String dbId = "scott2";
+	         String dbPw = "scott2";
 
 			conn = DriverManager.getConnection(dbUrl, dbId, dbPw);
 		} catch (Exception e) {

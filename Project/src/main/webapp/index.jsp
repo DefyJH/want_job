@@ -28,7 +28,7 @@
 		<a id="gotoMain" href="index.jsp">메인화면</a>
 		<div id=login>
 		<%if (nickname != null && code != null) { %>
-			<a href=""> <span id='nicname'><%=nickname %></span> 님</a> | <a href="">마이페이지</a> | <a href="logout_action.jsp">로그아웃</a>
+			<a href="myPage.jsp"> <span id='nicname'><%=nickname %></span> 님</a> | <a href="myPage.jsp">마이페이지</a> | <a href="logout_action.jsp">로그아웃</a>
 		<%} else { %>
 			<a href="login.jsp">로그인</a> | <a href="signup.jsp">회원가입</a> | <a href="">마이페이지</a>
 		<% } %>

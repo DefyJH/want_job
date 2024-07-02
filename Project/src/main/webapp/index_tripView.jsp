@@ -7,8 +7,6 @@
 <%@ page import="travelDB.dto.LocalCodeDTO"%>
 <%@ page import="travelDB.dto.TravelDestinationDTO"%>
 
-<%@ page import="travelDB.dto.TravelDestinationDTO_Json"%>
-
 <%@ page import="java.util.List"%>
 <%@ page import="java.util.ArrayList"%>
 <!DOCTYPE html>
@@ -46,12 +44,6 @@
 	if(viewListLength >= viewList) {
 		viewListLength = viewList;
 	}
-	
-	//맵에 마커 출력을 위한 리스트
-	List<TravelDestinationDTO_Json> tdjList = new ArrayList<TravelDestinationDTO_Json>();
-	for(TravelDestinationDTO td : tdList) {
-		tdjList.add(new TravelDestinationDTO_Json(td.getTitle(), Double.parseDouble(td.getMapX()), Double.parseDouble(td.getMapY())));
-	}
 
 	// 세션에서 닉네임과 코드 가져오기
 	String nickname = (String) session.getAttribute("user_nickname");
@@ -63,7 +55,7 @@
 		<a id="gotoMain" href="index.jsp">메인화면</a>
 		<div id=login>
 		<%if (nickname != null && code != null) { %>
-			<a href=""> <span id='nicname'><%=nickname %></span> 님</a> | <a href="">마이페이지</a> | <a href="logout_action.jsp">로그아웃</a>
+			<a href="myPage.jsp"> <span id='nicname'><%=nickname %></span> 님</a> | <a href="myPage.jsp">마이페이지</a> | <a href="logout_action.jsp">로그아웃</a>
 		<%} else { %>
 			<a href="login.jsp">로그인</a> | <a href="signup.jsp">회원가입</a> | <a href="">마이페이지</a>
 		<% } %>
@@ -147,9 +139,6 @@
 		// 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
 		var zoomControl = new kakao.maps.ZoomControl();
 		map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
-		
-		// 지도에 tdList의 맵 마커 출력
-		// 보류
 	
 		//selectBar 클릭시 해당 areacode를 가진 tripbox를 보여줌
 		let selectedLocal = document.querySelectorAll('.selectlocal');

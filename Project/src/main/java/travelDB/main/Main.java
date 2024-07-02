@@ -1,5 +1,6 @@
 package travelDB.main;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import travelDB.dao.ContentTypeDAO;
@@ -23,80 +24,108 @@ public class Main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		LocalCodeDAO localDAO = new LocalCodeDAO();
+//		LocalCodeDAO localDAO = new LocalCodeDAO();
+//		
+//		System.out.println("localList");
+//		List<LocalCodeDTO> localList = localDAO.getLocalCodeList();
+//		
+//		for(LocalCodeDTO lc : localList) {
+//			System.out.println(lc.getCode() + " " + lc.getName());
+//		}
+//		
+//		
+//		TravelDestinationDAO tdDAO = new TravelDestinationDAO();
+//		
+//		System.out.println("tdDAO.findTravelDestinationByAreacode(1)");
+//		List<TravelDestinationDTO> tdList = tdDAO.findTravelDestinationByAreacode(1);
+//		for(int i=0; i<10; i++) {
+//			System.out.println(tdList.get(i).getAreacode() + " " + tdList.get(i).getTitle());
+//		}
+//		
+//		System.out.println("getTravelDestinationList()");
+//		List<TravelDestinationDTO> tdList2 = tdDAO.getTravelDestinationList();
+//		for(int i=0; i<10; i++) {
+//			System.out.println(tdList.get(i).getAreacode() + " " + tdList.get(i).getTitle());
+//		}
+//		
+//		
+//		ContentTypeDAO ctDAO = new ContentTypeDAO();
+//		
+//		List<ContentTypeDTO> ctList = ctDAO.getContentTypeList();
+//		
+//		System.out.println("findContentTypeList()");
+//		
+//		for(int i=0; i<ctList.size(); i++) {
+//			System.out.println(ctList.get(i).getType_code() + " " + ctList.get(i).getType_name());
+//		}
+//		
+//		
+//		TravelDestinationDTO td = tdDAO.findTravelDestinationByContentId(970636);
+//
+//		List<TravelDestinationDTO> otdList = tdDAO.findOtherTravelDestination(td.getAreacode(), td.getContenttypeid(),
+//				td.getSigungucode());
+//		
+//		System.out.println("findOtherTravelDestination");
+//		for(TravelDestinationDTO tdl : otdList) {
+//			System.out.println(tdl.getAreacode()+ " " + tdl.getTitle());
+//		}
+//		
+//		TravelDetailDAO tddDAO = new TravelDetailDAO();
+//		
+//		System.out.println("findTravelDetailByContentId");
+//		TravelDetailDTO tdd = tddDAO.findTravelDetailByContentId(1390147);
+//		System.out.println(tdd.getContentid() + " " + tdd.getHomepage());
+//		
+//		
+//		ReviewDAO reviewDAO = new ReviewDAO();
+//		List<ReviewDTO> reviewList = reviewDAO.findReviewByContenId(1390147);
+//		
+//		System.out.println("findReviewByContenId");
+//		for(ReviewDTO rv : reviewList) {
+//			System.out.println(rv.getReview_code() + " " + rv.getReview_text() + " " + ConvertDateUtil.convertLocalDateTimeToString4(rv.getReview_date()));
+//		}
+//		
+//		UserDateDAO uDAO = new UserDateDAO();
+//		List<UserDateDTO> uList = uDAO.getUserDataList();
+//		
+//		System.out.println("getUserDataList()");
+//		for(UserDateDTO u : uList) {
+//			System.out.println(u.getUser_code() + " " + u.getUser_nickname() + " " + ConvertDateUtil.convertLocalDateTimeToString4(u.getUser_signdate()));
+//		}
+//		
+//		DisabilityInfoDAO diDAO = new DisabilityInfoDAO();
+//		DisabilityInfoDTO di = diDAO.findDisabilityInfoByContentId(2465126);
+//				
+//		System.out.println("findDisabilityInfoByContentId(2465126)");
+//		System.out.println(di.getContentid());
 		
-		System.out.println("localList");
-		List<LocalCodeDTO> localList = localDAO.getLocalCodeList();
+		ReviewDAO rvDAO = new ReviewDAO();
+		List<ReviewDTO> rvList = rvDAO.findReviewByUserCode(3);
 		
-		for(LocalCodeDTO lc : localList) {
-			System.out.println(lc.getCode() + " " + lc.getName());
+		for(ReviewDTO rv : rvList) {
+			System.out.println(rv.getContents_id() + " " + rv.getUser_code() + " " + rv.getReview_text());
 		}
 		
+		List<Integer> rvContentId = new ArrayList<Integer>();
+		
+		for(ReviewDTO rv : rvList) {
+			rvContentId.add(rv.getContents_id());
+			
+			System.out.println(rv.getContents_id());
+		}
 		
 		TravelDestinationDAO tdDAO = new TravelDestinationDAO();
+		List<TravelDestinationDTO> tdList = new ArrayList<TravelDestinationDTO>();
 		
-		System.out.println("tdDAO.findTravelDestinationByAreacode(1)");
-		List<TravelDestinationDTO> tdList = tdDAO.findTravelDestinationByAreacode(1);
-		for(int i=0; i<10; i++) {
-			System.out.println(tdList.get(i).getAreacode() + " " + tdList.get(i).getTitle());
+		for(int i=0; i<rvContentId.size(); i++) {
+			TravelDestinationDTO dto = tdDAO.findTravelDestinationByContentId(rvContentId.get(i));
+			
+			tdList.add(dto);
 		}
 		
-		System.out.println("getTravelDestinationList()");
-		List<TravelDestinationDTO> tdList2 = tdDAO.getTravelDestinationList();
-		for(int i=0; i<10; i++) {
-			System.out.println(tdList.get(i).getAreacode() + " " + tdList.get(i).getTitle());
+		for(int i=0; i<tdList.size(); i++) {
+			System.out.println(tdList.get(i).getTitle());
 		}
-		
-		
-		ContentTypeDAO ctDAO = new ContentTypeDAO();
-		
-		List<ContentTypeDTO> ctList = ctDAO.getContentTypeList();
-		
-		System.out.println("findContentTypeList()");
-		
-		for(int i=0; i<ctList.size(); i++) {
-			System.out.println(ctList.get(i).getType_code() + " " + ctList.get(i).getType_name());
-		}
-		
-		
-		TravelDestinationDTO td = tdDAO.findTravelDestinationByContentId(970636);
-
-		List<TravelDestinationDTO> otdList = tdDAO.findOtherTravelDestination(td.getAreacode(), td.getContenttypeid(),
-				td.getSigungucode());
-		
-		System.out.println("findOtherTravelDestination");
-		for(TravelDestinationDTO tdl : otdList) {
-			System.out.println(tdl.getAreacode()+ " " + tdl.getTitle());
-		}
-		
-		TravelDetailDAO tddDAO = new TravelDetailDAO();
-		
-		System.out.println("findTravelDetailByContentId");
-		TravelDetailDTO tdd = tddDAO.findTravelDetailByContentId(1390147);
-		System.out.println(tdd.getContentid() + " " + tdd.getHomepage());
-		
-		
-		ReviewDAO reviewDAO = new ReviewDAO();
-		List<ReviewDTO> reviewList = reviewDAO.findReviewByContenId(1390147);
-		
-		System.out.println("findReviewByContenId");
-		for(ReviewDTO rv : reviewList) {
-			System.out.println(rv.getReview_code() + " " + rv.getReview_text() + " " + ConvertDateUtil.convertLocalDateTimeToString4(rv.getReview_date()));
-		}
-		
-		UserDateDAO uDAO = new UserDateDAO();
-		List<UserDateDTO> uList = uDAO.getUserDataList();
-		
-		System.out.println("getUserDataList()");
-		for(UserDateDTO u : uList) {
-			System.out.println(u.getUser_code() + " " + u.getUser_nickname() + " " + ConvertDateUtil.convertLocalDateTimeToString4(u.getUser_signdate()));
-		}
-		
-		DisabilityInfoDAO diDAO = new DisabilityInfoDAO();
-		DisabilityInfoDTO di = diDAO.findDisabilityInfoByContentId(2465126);
-				
-		System.out.println("findDisabilityInfoByContentId(2465126)");
-		System.out.println(di.getContentid());
 		
 	}
 

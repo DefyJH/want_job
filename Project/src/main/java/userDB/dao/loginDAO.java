@@ -16,7 +16,7 @@ public class loginDAO {
     public String[] loginMove(String user_id, String user_pw) {
         conn = DBConnectionManager.connectDB();
 
-        String query = "SELECT user_nickname, user_code FROM user_data WHERE user_id = ? AND user_pw = ?";
+        String query = " SELECT user_nickname, user_code FROM user_info WHERE user_id = ? AND user_pw = ? AND user_status = 1 ";
 
         try {
             psmt = conn.prepareStatement(query);
