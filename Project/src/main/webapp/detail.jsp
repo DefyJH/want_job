@@ -147,8 +147,7 @@
 			<%
 			} else {
 			%>
-			<a href="login.jsp">로그인</a> | <a href="signup.jsp">회원가입</a> | <a
-				href="">마이페이지</a>
+			<a href="login.jsp">로그인</a> | <a href="signup.jsp">회원가입</a>
 			<%
 			}
 			%>
