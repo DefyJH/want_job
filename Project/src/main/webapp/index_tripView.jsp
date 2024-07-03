@@ -1,13 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<%@ page import="travelDB.dao.LocalCodeDAO"%>
-<%@ page import="travelDB.dao.TravelDestinationDAO"%>
-
-<%@ page import="travelDB.dto.LocalCodeDTO"%>
+<%@ page import="travelDB.dto.LocalCodeDTO" %>
 <%@ page import="travelDB.dto.TravelDestinationDTO"%>
 
-<%@ page import="travelDB.dto.TravelDestinationDTO_Json"%>
+<%@ page import="travelDB.dao.LocalCodeDAO" %>
+<%@ page import="travelDB.dao.TravelDestinationDAO"%>
 
 <%@ page import="java.util.List"%>
 <%@ page import="java.util.ArrayList"%>
@@ -28,7 +26,10 @@
 	//Local DB 적용하면 됨
 	LocalCodeDAO localCodeDAO = new LocalCodeDAO();
 	List<LocalCodeDTO> localList = localCodeDAO.getLocalCodeList();
-
+	
+	// 지역 좌표 가져오기 위한 변수
+ 	LocalCodeDTO local = localCodeDAO.getLocalCode(areaCode);
+	
 	TravelDestinationDAO tdDAO = new TravelDestinationDAO();
 
 	List<TravelDestinationDTO> tdList = null;
@@ -144,15 +145,15 @@
 	<script>
 		var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
 		
-		var mapX = <%=Double.parseDouble(tdList.get(0).getMapX())%>;
-		var mapY = <%=Double.parseDouble(tdList.get(0).getMapY())%>;
+		var mapX = <%=Double.parseDouble(local.getMapX())%>;
+		var mapY = <%=Double.parseDouble(local.getMapY())%>;
 
-		console.log(mapX);
-		console.log(mapY);
+ 		console.log(mapX);
+ 		console.log(mapY);
 		
 		var options = { 
-				center : new kakao.maps.LatLng(mapY, mapX),
-				level : 10
+				center : new kakao.maps.LatLng(mapX, mapY),
+				level : <%=local.getMLevel() %>
 			};
 
 		var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
