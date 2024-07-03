@@ -1,3 +1,0 @@
-INDEX VERSION 1.134
-D:\Jobseecker project\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\4114514053.index
-\Project\src\main\java
