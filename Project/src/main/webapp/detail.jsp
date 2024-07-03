@@ -304,7 +304,7 @@
 				</div>
 				<%} %>
 
-
+<%-- 
 				<%if(di.getGuide_sign() != null || di.getGuide_video() != null
 						|| di.getHearingroom() != null || di.getHearinghandicapetc() != null) { %>
 				<div>
@@ -325,7 +325,7 @@
 					</ul>
 				</div>
 				<% } %>
-
+ --%>
 				<%if(di.getStroller() != null || di.getLactationroom() != null
 						|| di.getBabysparechair() != null || di.getInfantsfamily_etc() != null) { %>
 				<div>

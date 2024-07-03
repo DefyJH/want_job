@@ -162,7 +162,9 @@ public class TravelDestinationDAO {
 			conn = DBConnectionManager.connectDB();
 
 			String query = " SELECT * FROM travel_destination "
-							+ " WHERE areacode = ? AND sigungucode = ?  AND NOT contentid = ?  AND contentId IN (SELECT contentid FROM travel_detail WHERE overview IS NOT NULL) ";
+							+ " WHERE areacode = ? AND sigungucode = ?  AND NOT contentid = ? "
+							+ " AND contentid IN (SELECT contentid FROM TRAVEL_DETAIL) "
+							+ " AND contentid IN (SELECT contentid FROM DISABILITY_ACCOMMODATION_INFO) ";
 			
 			psmt = conn.prepareStatement(query);
 			psmt.setInt(1, areaCode);

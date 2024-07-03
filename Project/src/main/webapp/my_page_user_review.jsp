@@ -37,6 +37,7 @@
 
 	ReviewDAO rvDAO = new ReviewDAO();
 	List<ReviewDTO> rvList = rvDAO.findReviewByUserCode(user_code);
+	
 	%>
 
 	<div>
@@ -85,9 +86,9 @@
 			for (int i = 0; i < rvList.size(); i++) {
 			%>
 
-			<div id="reviewBox" onclick="moveDetail()">
-				<input type="hidden" id="content_id"
-					value="<%=tdList.get(i).getContentid()%>">
+			<div class="reviewBox" onclick="moveDetail()">
+				<input type="hidden" class="content_id"
+					value="<%=rvList.get(i).getContents_id()%>">
 				<h3><%=tdList.get(i).getTitle()%></h3>
 				<p>
 					✍<%=rvList.get(i).getReview_text()%></p>
@@ -153,11 +154,15 @@
 	</div>
 
 	<script>
-		function moveDetail() {
-			let contentId = document.querySelector('#content_id').value
-
-			location.href = "detail.jsp?contentId=" + contentId;
-		}
+	
+	let reviewBoxes = document.querySelectorAll('.reviewBox');
+    
+    reviewBoxes.forEach(function(reviewBox) {
+        reviewBox.addEventListener('click', function() {
+            let contentId = reviewBox.querySelector('.content_id').value;
+            location.href = "detail.jsp?contentId=" + contentId;
+        });
+    });
 	</script>
 
 </body>
