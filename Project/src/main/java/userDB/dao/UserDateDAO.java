@@ -108,6 +108,50 @@ public class UserDateDAO {
 
 	}
 
+	public UserDateDTO findOtherDataByUserCode(int user_code) {
+
+		UserDateDTO ui = null;
+
+		try {
+			conn = DBConnectionManager.connectDB();
+
+			String query = " SELECT SUBSTR(user_tel, 1, 3) || '-' || SUBSTR(user_tel, 4, 4) || '-' || SUBSTR(user_tel, 8, 4) AS phone_num, "
+					+ " '19' || SUBSTR(user_regno, 1, 2) || '년 ' || SUBSTR(user_regno, 3, 2) || '월 ' || SUBSTR(user_regno, 5, 2) || '일' AS user_birthdate, "
+					+ " SUBSTR(user_regno, 7, 1) AS user_gender "
+					+ " FROM user_info "
+					+ " WHERE user_code = ? ";
+			
+			psmt = conn.prepareStatement(query);
+			
+			psmt.setInt(1, user_code);
+			
+			rs = psmt.executeQuery(); // 쿼리 DB전달 실행
+
+			while (rs.next()) { // 더이상 가져올 데이터가 없을때까지~
+
+				ui = new UserDateDTO();
+				
+				ui.setPhone_num(rs.getString("phone_num"));
+				ui.setUser_birthdate(rs.getString("user_birthdate"));
+				
+				int gender = Integer.parseInt(rs.getString("user_gender"));
+				
+				ui.setUser_gender(gender);
+				
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			DBConnectionManager.disconnectDB(conn, psmt, rs);	//conn psmt rs
+		}
+
+		return ui;
+
+	}
+
+
 	
 	public int updateUserInfo(String user_nickname, String user_name, String user_tel, String user_email,
 			String user_address, String user_pw, int user_code) {

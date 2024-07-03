@@ -18,6 +18,7 @@
    </div>
    <div class="sidebar">
       <ul>
+      		<li><a href="my_page_user_data.jsp">회원정보확인</a></li>
 			<li><a href="my_page_user_updaet.jsp">회원정보수정</a></li>
 			<li><a href="my_page_user_delete.jsp">회원탈퇴</a></li>
 			<li><a href="my_page_user_review.jsp">나의 리뷰관리</a></li>

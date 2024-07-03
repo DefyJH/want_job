@@ -29,14 +29,26 @@
 <link rel="stylesheet" type="text/css" href="./css/my_page.css">
 </head>
 <body>
-	<% 
+	<%
 	Integer code = (Integer) session.getAttribute("user_code");
 	int user_code = code;
-	
+
 	UserDateDAO uDAO = new UserDateDAO();
 	UserDateDTO ud = uDAO.findUserDataByUserCode(user_code);
 	
+	//유저 핸드폰번호, 생년월일, 성별 가져오기
+	UserDateDTO udo = uDAO.findOtherDataByUserCode(user_code);
+	
+	String userGender = "성별없음";
+	
+	if (udo.getUser_gender() == 1 || udo.getUser_gender() == 3 ) {
+		userGender = "남성";
+	} else if(udo.getUser_gender() == 2 || udo.getUser_gender() == 4) {
+		userGender = "여성";
+	}
+	
 	%>
+
 	<div>
 		<h1>
 			<a id="gotoMain" href="index.jsp">메인<br />화면
@@ -53,26 +65,40 @@
 	</div>
 	<div id="main-content">
 		<div id="frm_deleteAccount">
-			<div id="deleteUser">
-				<h2>회원탈퇴</h2>
-				<label> 비밀번호 : <input type="text" id="input_pw">
-				</label>
-				<button onclick="deleteButton()">탈퇴하기</button>
+			<div id="FindUserDate">
+				<h2>회원정보조회</h2>
+				<p>
+					닉네임 :
+					<span><%=ud.getUser_nickname()%></span>
+				</p>
+				<p>
+					이름 :
+					<span><%=ud.getUser_name()%></span>
+				</p>
+
+				<p>
+					생년월일 :
+					<span><%=udo.getUser_birthdate()%></span>
+				</p>
+				<p>
+					성별 :
+					<span><%=userGender %></span>
+				</p>
+				
+				<p>
+					전화번호 :
+					<span><%=udo.getPhone_num()%></span>
+				</p>
+				<p>
+					이메일 :
+					<span><%=ud.getUser_email()%></span>
+				</p>
+				<p>
+					주소 :
+					<span><%=ud.getUser_address()%></span>
+				</p>
 			</div>
 		</div>
 	</div>
-	<script>
-
-		let userPW = '<%=ud.getUser_pw()%>';
-
-		function deleteButton() {
-			if(document.querySelector('#input_pw').value == userPW) {
-				location.href = "delete_user.jsp";
-			} else {
-				alert("비밀번호가 맞지 않습니다. 다시 입력해주세요.");
-			}
-		}
-		
-	</script>
 </body>
 </html>

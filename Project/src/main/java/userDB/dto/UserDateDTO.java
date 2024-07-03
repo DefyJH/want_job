@@ -16,7 +16,17 @@ public class UserDateDTO {
 	LocalDateTime user_signdate;
 	String user_status;
 	
+	String phone_num;
+	String user_birthdate;
+	int user_gender;
+	
 	public UserDateDTO() {}
+	
+	public UserDateDTO(String phone_num, String user_birthdate, int user_gender) {
+		this.phone_num = phone_num;
+		this.user_birthdate = user_birthdate;
+		this.user_gender = user_gender;
+	}
 	
 	public UserDateDTO(int user_code, String user_id, String user_pw, String user_nickname, String user_name,
 			String user_regnos, String user_tel, String user_email, String user_address, LocalDateTime user_signdate,
@@ -122,5 +132,35 @@ public class UserDateDTO {
 	public void setUser_status(String user_status) {
 		this.user_status = user_status;
 	}
+
+	public String getPhone_num() {
+		return phone_num;
+	}
+
+	public void setPhone_num(String phone_num) {
+		this.phone_num = phone_num;
+	}
+
+	public String getUser_birthdate() {
+		return user_birthdate;
+	}
+
+	public void setUser_birthdate(String user_birthdate) {
+		this.user_birthdate = user_birthdate;
+	}
+
+	public int getUser_gender() {
+		return user_gender;
+	}
+
+public void setUser_gender(int user_gender) {
+		this.user_gender = user_gender;
+	}
+
+	public void setUser_regnos(String user_regnos) {
+		this.user_regnos = user_regnos;
+	}
+	
+	
 	
 }

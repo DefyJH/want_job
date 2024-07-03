@@ -29,9 +29,9 @@ public class Main {
 //   		System.out.println(ud.getUser_code() + " " + ud.getUser_name());
    		
    		UserDateDAO uDAO = new UserDateDAO();
-   		UserDateDTO ud = uDAO.findUserDataByUserCode(5);
+   		UserDateDTO ud = uDAO.findOtherDataByUserCode(5);
    		
-   		System.out.println(ud.getUser_pw());
+   		System.out.println(ud.getPhone_num() + " " + ud.getUser_birthdate() + " " + ud.getUser_gender());
 
 	}
 
