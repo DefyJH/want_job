@@ -1,0 +1,375 @@
+@charset "UTF-8";
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+
+	color: #333333;
+}
+
+#topNav {
+	width: 100%;
+	height: 70px;
+
+	background-color: #333333;
+	color: white;
+	padding: 10px;
+	text-align: right;
+
+	display: flex;
+	justify-content: space-between;
+}
+
+#gotoMain {
+	text-decoration: none;
+
+	font-size: 2rem;
+	font-weight: bold;
+
+	color: white;
+
+	margin-left: 15px;
+}
+
+#login {
+	color: white;
+}
+
+#login>a {
+	margin: 10px 10px;
+	margin-right: 10px;
+
+	text-decoration: none;
+	color: white;
+}
+
+#nicname {
+	color: rgb(252, 229, 173);
+
+	font-weight: bold;
+}
+
+#title {
+	text-align: center;
+	margin: 30px 0;
+}
+
+#title>p {
+	margin-top: 10px;
+	font-size: 1.2rem;
+}
+
+#detailNav {
+	display: flex;
+	flex-wrap: wrap;
+	list-style-type: none;
+
+	justify-content: center;
+}
+
+#detailNav>button {
+	width: 15%;
+	height: 5vw;
+
+	padding: 8px 16px;
+	margin: 5px;
+
+	background-color: rgb(252, 229, 173);
+	color: rgb(0, 0, 0);
+
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	font-size: 16px;
+}
+
+#travelImg {
+	margin: 0 auto;
+	width: 100vw;
+}
+
+#imaContainer>hr {
+	margin: 10px 0;
+	border: 1px solid lightgray;
+}
+
+/* .preview {
+	width: 20vw;
+	opacity : 50%;
+	
+	margin-right : 10px;
+}
+
+.preview:hover {
+	opacity : 80%;
+} */
+
+#detailInfo li {
+	margin-top: 10px;
+}
+
+#detailInfo {
+	margin: 0 50px;
+	/*text-align: center;*/
+}
+
+#detailInfo>div {
+	margin: 50px 0;
+}
+
+#detailInfo>img {
+	margin-top: 30px;
+	padding: 0 20px;
+}
+
+#travelInfo>ul {
+	list-style-type: none;
+}
+
+#travelInfo>p {
+	text-align: justify;
+	margin: 20px 0;
+}
+
+#tag>span {
+	margin-top: 20px;
+}
+
+#facInfo>div {
+	display: flex;
+	margin-top: 20px;
+}
+
+.facBox {
+	width: 15vw;
+	height: 7vw;
+	background-color: rgb(252, 229, 173);
+	border-radius: 10px;
+	margin-right: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-weight: bold;
+}
+
+#facInfo ul {
+	list-style-type: none;
+}
+
+#tripbox>button {
+	border: 0;
+	background-color: transparent;
+}
+
+#map {
+	width: 100%;
+	height: 50vw;
+	background-color: lightgray;
+	margin: 20px 0;
+}
+
+#review {
+	margin: 50px;
+}
+
+.reviewBox {
+	width: 100%;
+	height: 20vw;
+
+	background-color: #EAEAEA;
+
+	margin-top: 20px;
+	padding: 20px;
+
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row-reverse;
+	justify-content: space-between;
+
+	/*  */
+
+	align-content: center;
+}
+
+.reviewBox>textarea {
+	resize: none;
+
+	width: 100%;
+	height: 10vw;
+
+	border: 1px solid lightgray;
+
+	padding: 10px;
+}
+
+.registerBox {
+	width: 70%;
+
+	display: flex;
+	flex-direction: row-reverse;
+	flex-wrap: wrap;
+}
+
+.registerPhoto {
+	width: 8vw;
+	height: 4vw;
+
+	border-radius: 8%;
+
+	border: 1px solid lightgray;
+	background-color: white;
+
+	color: lightgray;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	margin-top: 10px;
+}
+
+#fileUp {
+	display: none;
+}
+
+.register {
+	width: 8vw;
+	height: 4vw;
+
+	border-radius: 8%;
+
+	border: 0;
+	background-color: #13294B;
+
+	color: white;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	margin-top: 10px;
+	margin-left: 10px;
+}
+
+.rating {
+	margin-top: 10px;
+}
+
+.star {
+	color: gray;
+
+	font-size: 1.2rem;
+
+	cursor: pointer;
+}
+
+#noReview {
+	padding: 10px;
+	margin-top: 30px;
+	margin-bottom: 100px;
+
+	text-align: center;
+}
+
+.userReview {
+	padding: 10px;
+
+	margin-top: 5px;
+	margin-bottom: 10px;
+}
+
+
+.userReview>p {
+
+	margin-bottom: 5px;
+}
+
+.userReview>span {
+	font-size: 0.8rem;
+
+	color: gray;
+}
+
+hr {
+	margin: 10px 0;
+
+	border: 1px solid rgb(252, 229, 173);
+}
+
+#review>hr {
+	margin: 0;
+	margin-top: 10px;
+
+	border: 1px solid gray;
+
+	opacity: 0.5;
+}
+
+#otherTrip {
+	margin: 50px;
+}
+
+#otherTripContainer {
+	display: flex;
+}
+
+#tripView {
+	display: flex;
+	flex-wrap: wrap;
+
+	justify-content: center;
+
+	margin: 20px 0;
+}
+
+.tripbox {
+	width: 23vw;
+	height: 27vw;
+
+
+	border: 1.5px solid #333333;
+	background-color: white;
+
+	border-radius: 4px;
+
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-content: center;
+	align-self: center;
+
+	margin: 5px;
+
+	padding: 20px 10px;
+
+	cursor: pointer;
+
+	opacity: 0.8;
+}
+
+.tripbox:hover {
+	border: 1.5px solid #333333;
+	color: rgb(255, 165, 0);
+	opacity: 1;
+}
+
+.img {
+	width: 90%;
+	height: 70%;
+	background-repeat: no-reapeat;
+	background-size: cover;
+	background-position: center;
+
+	/* border-radius: 10px; */
+
+	margin-bottom: 20px;
+}
+
+.sticky {
+	position: sticky;
+}
+
+.gold {
+	color: gold;
+}
