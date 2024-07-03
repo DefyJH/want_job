@@ -31,7 +31,7 @@
 		<script>
 			alert('회원탈퇴 실패');
 			
-			location.href = " myPage_userDelete.jsp ";
+			location.href = " my_page_user_delete.jsp ";
 		</script>
    	
    <% } %>

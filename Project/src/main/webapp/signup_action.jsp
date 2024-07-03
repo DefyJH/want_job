@@ -51,7 +51,7 @@
 	
 		<script>
 			alert('저장 성공');
-			location.href = 'signup.jsp'; //
+			location.href = 'index.jsp'; //
 		</script>
 	
 	<%

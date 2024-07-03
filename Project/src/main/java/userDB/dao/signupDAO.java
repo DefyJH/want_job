@@ -21,7 +21,7 @@ public class signupDAO {
 		try {
 			conn = DBConnectionManager.connectDB();
 			
-			String query = " INSERT INTO user_data "
+			String query = " INSERT INTO user_info "
 					+ "(user_code, "
 					+ "user_id , "
 					+ "user_pw, "
