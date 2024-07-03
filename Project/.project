@@ -28,18 +28,6 @@
 		<nature>org.eclipse.jdt.core.javanature</nature>
 		<nature>org.eclipse.wst.jsdt.core.jsNature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>src/main/webapp/WEB-INF/lib/json-simple-1.1.1.jar</name>
-			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/json-simple-1.1.1.jar</locationURI>
-		</link>
-		<link>
-			<name>src/main/webapp/WEB-INF/lib/ojdbc8.jar</name>
-			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/oracle/WINDOWS.X64_193000_db_home/jdbc/lib/ojdbc8.jar</locationURI>
-		</link>
-	</linkedResources>
 	<filteredResources>
 		<filter>
 			<id>1719274040250</id>

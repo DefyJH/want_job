@@ -23,20 +23,20 @@ public class LocalCodeDAO {
 	}
 
 	public int saveLocalCode(int code, String name) {
-		
+
 		int result = 0;
 
 		try {
 			conn = DBConnectionManager.connectDB();
-			
+
 			String query = " INSERT INTO local VALUES ( ?, ?, ?  )";
 
 			psmt = conn.prepareStatement(query);
-			
+
 			psmt.setInt(1, code);
 			psmt.setString(2, name);
 
-			result = psmt.executeUpdate();	//쿼리 DB전달 실행
+			result = psmt.executeUpdate(); // 쿼리 DB전달 실행
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -46,69 +46,98 @@ public class LocalCodeDAO {
 
 		return result;
 	}
-	
-	   public List<LocalCodeDTO> getLocalCodeList() {
 
-      List<LocalCodeDTO> localList = null;
+	public int saveLocalCode(ArrayList<LocalCodeDTO> list) {
 
-      try {
-         conn = DBConnectionManager.connectDB();
+		int result = 0;
 
-         String query = " SELECT * FROM local ";
+		try {
+			conn = DBConnectionManager.connectDB();
 
-         psmt = conn.prepareStatement(query);
+			String query = " INSERT INTO local VALUES ( ?, ? )";
 
-         rs = psmt.executeQuery(); // 쿼리 DB전달 실행
+			psmt = conn.prepareStatement(query);
 
-         while (rs.next()) { // 더이상 가져올 데이터가 없을때까지~
+			for (int i = 0; i < list.size(); i++) {
+				psmt.setInt(1, list.get(i).getCode());
+				psmt.setString(2, list.get(i).getName());
 
-            if (localList == null)
-               localList = new ArrayList<LocalCodeDTO>();
+				result = psmt.executeUpdate(); // 쿼리 DB전달 실행
+			}
 
-            LocalCodeDTO localCode = new LocalCodeDTO(rs.getInt("local_code"), rs.getString("local_name"),
-                  rs.getString("mapX"), rs.getString("mapY"), rs.getInt("mlevel"));
+			System.out.println("정상적으로 완료");
 
-            localList.add(localCode);
-         }
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConnectionManager.disconnectDB(conn, psmt, null);
+		}
 
-      } catch (SQLException e) {
-         // TODO Auto-generated catch block
-         e.printStackTrace();
-      } finally {
-         DBConnectionManager.disconnectDB(conn, psmt, rs); // conn psmt rs
-      }
+		return result;
+	}
 
-      return localList;
+	public List<LocalCodeDTO> getLocalCodeList() {
 
-   }
+		List<LocalCodeDTO> localList = null;
 
-   public LocalCodeDTO getLocalCode(int areaCode) {
+		try {
+			conn = DBConnectionManager.connectDB();
 
-      LocalCodeDTO local = null;
+			String query = " SELECT * FROM local order by local_code";
 
-      try {
-         conn = DBConnectionManager.connectDB();
+			psmt = conn.prepareStatement(query);
 
-         String query = " SELECT * FROM local where local_code = ? ";
+			rs = psmt.executeQuery(); // 쿼리 DB전달 실행
 
-         psmt = conn.prepareStatement(query);
-         psmt.setInt(1, areaCode);
-         
-         rs = psmt.executeQuery(); // 쿼리 DB전달 실행
+			while (rs.next()) { // 더이상 가져올 데이터가 없을때까지~
 
-         while (rs.next()) { // 더이상 가져올 데이터가 없을때까지~
+				if (localList == null)
+					localList = new ArrayList<LocalCodeDTO>();
 
-            local = new LocalCodeDTO(rs.getInt("local_code"), rs.getString("local_name"), rs.getString("mapX"),
-                  rs.getString("mapY"), rs.getInt("mlevel"));
-         }
+				LocalCodeDTO localCode = new LocalCodeDTO(rs.getInt("local_code"), rs.getString("local_name"),
+						rs.getString("mapX"), rs.getString("mapY"), rs.getInt("mlevel"));
 
-      } catch (SQLException e) {
-         // TODO Auto-generated catch block
-         e.printStackTrace();
-      } finally {
-         DBConnectionManager.disconnectDB(conn, psmt, rs); // conn psmt rs
-      }
+				localList.add(localCode);
+			}
 
-      return local;
-   }
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			DBConnectionManager.disconnectDB(conn, psmt, rs); // conn psmt rs
+		}
+
+		return localList;
+
+	}
+
+	public LocalCodeDTO getLocalCode(int areaCode) {
+
+		LocalCodeDTO local = null;
+
+		try {
+			conn = DBConnectionManager.connectDB();
+
+			String query = " SELECT * FROM local where local_code = ? ";
+
+			psmt = conn.prepareStatement(query);
+			psmt.setInt(1, areaCode);
+
+			rs = psmt.executeQuery(); // 쿼리 DB전달 실행
+
+			while (rs.next()) { // 더이상 가져올 데이터가 없을때까지~
+
+				local = new LocalCodeDTO(rs.getInt("local_code"), rs.getString("local_name"), rs.getString("mapX"),
+						rs.getString("mapY"), rs.getInt("mlevel"));
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			DBConnectionManager.disconnectDB(conn, psmt, rs); // conn psmt rs
+		}
+
+		return local;
+	}
 }

@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ page import="travelDB.dao.LocalCodeDAO" %>
 <%@ page import="travelDB.dao.TravelDestinationDAO"%>
 <%@ page import="travelDB.dto.LocalCodeDTO"%>
@@ -37,7 +36,6 @@
 
 	<div>
 		<div id="localSelectBar" class="selectbar">
-			<button type="submit" class="selectlocal" value="0">전체</button>
 			<%
 			for (LocalCodeDTO lc : localList) {
 			%>
