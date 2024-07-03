@@ -66,8 +66,8 @@
 			<%
 			if (nickname != null && code != null) {
 			%>
-			<a href=""> <span id='nicname'><%=nickname%></span> 님
-			</a> | <a href="">마이페이지</a> | <a href="logout_action.jsp">로그아웃</a>
+			<a href="my_page.jsp"> <span id='nicname'><%=nickname%></span> 님
+			</a> | <a href="my_page.jsp">마이페이지</a> | <a href="logout_action.jsp">로그아웃</a>
 			<%
 			} else {
 			%>
