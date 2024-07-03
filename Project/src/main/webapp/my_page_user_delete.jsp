@@ -55,7 +55,7 @@
 		<div id="frm_deleteAccount">
 			<div id="deleteUser">
 				<h2>회원탈퇴</h2>
-				<label> 비밀번호 : <input type="text" id="input_pw">
+				<label> 비밀번호 : <input type="password" id="input_pw">
 				</label>
 				<button onclick="deleteButton()">탈퇴하기</button>
 			</div>

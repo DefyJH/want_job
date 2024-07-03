@@ -32,6 +32,14 @@ body {
 	font-weight: bold;
 }
 
+.signupMain input[type="password"] {
+	width: calc(100% - 20px);
+	padding: 8px;
+	margin-top: 5px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+
 .signupMain input[type="text"] {
 	width: calc(100% - 20px);
 	padding: 8px;

@@ -21,7 +21,7 @@
         </label><br>
         
         <label class="mainPW">
-        	PW : <input type="text" id="input_pw" name="user_pw" placeholder="영어+숫자+특수문자를 이용해 8자리를 입력해주세요.">
+        	PW : <input type="password" id="input_pw" name="user_pw" placeholder="영어+숫자+특수문자를 이용해 8자리를 입력해주세요.">
         </label ><br>
         
         <label class="mainName">
