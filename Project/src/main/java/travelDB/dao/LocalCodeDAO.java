@@ -83,7 +83,7 @@ public class LocalCodeDAO {
 		try {
 			conn = DBConnectionManager.connectDB();
 
-			String query = " SELECT * FROM local ";
+			String query = " SELECT * FROM local order by local_code";
 
 			psmt = conn.prepareStatement(query);
 

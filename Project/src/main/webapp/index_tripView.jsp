@@ -81,7 +81,6 @@
 
 	<div>
 		<div id="localSelectBar" class="selectbar">
-			<button type="submit" class="selectlocal" value="0">전체</button>
 			<%
 			for (LocalCodeDTO lc : localList) {
 			%>
