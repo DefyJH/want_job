@@ -1,6 +1,11 @@
 package userDB.main;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import userDB.dao.ReviewDAO;
 import userDB.dao.UserDateDAO;
+import userDB.dto.ReviewDTO;
 import userDB.dto.UserDateDTO;
 
 public class Main {
@@ -28,10 +33,20 @@ public class Main {
 //   		
 //   		System.out.println(ud.getUser_code() + " " + ud.getUser_name());
    		
-   		UserDateDAO uDAO = new UserDateDAO();
-   		UserDateDTO ud = uDAO.findOtherDataByUserCode(5);
-   		
-   		System.out.println(ud.getPhone_num() + " " + ud.getUser_birthdate() + " " + ud.getUser_gender());
+//   		UserDateDAO uDAO = new UserDateDAO();
+//   		UserDateDTO ud = uDAO.findOtherDataByUserCode(5);
+//   		
+//   		System.out.println(ud.getPhone_num() + " " + ud.getUser_birthdate() + " " + ud.getUser_gender());
+		
+		ReviewDAO reviewDAO = new ReviewDAO();
+		List<ReviewDTO> reviewList = reviewDAO.findReviewByContenId(131988);
+		
+		List<Integer> rating = new ArrayList<Integer>();
+		
+		for(ReviewDTO rv : reviewList) {
+			rating.add(rv.getReview_rating());
+		}
+		
 
 	}
 

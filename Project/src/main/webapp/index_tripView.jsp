@@ -13,7 +13,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Travel For All</title>
 <link rel="stylesheet" href="./css/index_tripView.css">
 </head>
 <body>
@@ -61,7 +61,7 @@
 
 
 	<div id="topNav">
-		<a id="gotoMain" href="index.jsp">메인화면</a>
+		<a id="gotoMain" href="index.jsp">Travel For All</a>
 		<div id=login>
 			<%
 			if (nickname != null && code != null) {

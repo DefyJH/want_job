@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Travel For All</title>
 <link rel="stylesheet" href="./css/index.css">
 </head>
 <body>
@@ -24,7 +24,7 @@
 
 
 	<div id="topNav">
-		<a id="gotoMain" href="index.jsp">메인화면</a>
+		<a id="gotoMain" href="index.jsp">Travel For All</a>
 		<div id=login>
 		<%if (nickname != null && code != null) { %>
 			<a href="my_page.jsp"> <span id='nicname'><%=nickname %></span> 님</a> | <a href="my_page.jsp">마이페이지</a> | <a href="logout_action.jsp">로그아웃</a>

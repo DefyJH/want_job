@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원가입</title>
+<title>Travel For All</title>
 <link rel="stylesheet" type="text/css" href="./css/signup.css">
 </head>
 <body>

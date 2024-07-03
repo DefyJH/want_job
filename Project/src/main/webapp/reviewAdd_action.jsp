@@ -6,13 +6,28 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Travel For All</title>
 </head>
 <body>
 	<%
-
- 		int user_code = Integer.parseInt(request.getParameter("user_code"));
-		int contents_id = Integer.parseInt(request.getParameter("contents_id"));
+	request.setCharacterEncoding("UTF-8");	//문자인코딩 설정 한글깨짐 방지
+	
+	int user_code = Integer.parseInt(request.getParameter("user_code"));
+	int contents_id = Integer.parseInt(request.getParameter("contents_id"));
+	
+	
+	if(request.getParameter("review_text") == "") { %>
+			<script>
+			alert('리뷰가 작성되지 않았습니다. 리뷰를 작성해주세요.');
+			location.href = "detail.jsp?contentId="+<%=contents_id%>;
+			</script>
+		<% } else if(request.getParameter("review_rating") == "") {%>
+			<script>
+			alert('평점이 체크되지 않았습니다. 평점을 체크해주세요.');
+			location.href = "detail.jsp?contentId="+<%=contents_id%>;
+			</script>
+		<% } else {
+ 		
 		String review_text = request.getParameter("review_text");
 		String review_image = request.getParameter("review_image");
 		int review_rating = Integer.parseInt(request.getParameter("review_rating"));
@@ -35,6 +50,8 @@
 			location.href = "detail.jsp?contentId="+<%=contents_id%>;
 		</script>
 		
-		<% } %>
+		<% }
+		
+		}%>
 </body>
 </html>

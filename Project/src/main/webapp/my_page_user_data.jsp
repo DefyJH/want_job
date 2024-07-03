@@ -25,7 +25,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Travel For All</title>
 <link rel="stylesheet" type="text/css" href="./css/my_page.css">
 </head>
 <body>
@@ -51,7 +51,7 @@
 
 	<div>
 		<h1>
-			<a id="gotoMain" href="index.jsp">메인<br />화면
+			<a id="gotoMain" href="index.jsp">Travel<br />For All
 			</a> <br /> <br /> <a href="my_page.jsp">MY PAGE</a>
 		</h1>
 	</div>
