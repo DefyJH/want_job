@@ -1,31 +1,70 @@
 package travelDB.dto;
 
 public class LocalCodeDTO {
-	int code;
-	String name;
-	
-	public LocalCodeDTO() {}
-	
-	public LocalCodeDTO(int code, String name) {
-		super();
-		this.code = code;
-		this.name = name;
-	}
+	   int code;
+	   String name;
+	   String mapX;   //맵X축
+	   String mapY;   //맵Y축
+	   int mLevel;   //맵레벨
+	   
+	   public LocalCodeDTO() {}
+	   
+	   public LocalCodeDTO(int code, String name) {
+	      super();
+	      this.code = code;
+	      this.name = name;
+	      this.mapX = null;
+	      this.mapY = null;
+	      this.mLevel = 10;
+	   }
 
-	public int getCode() {
-		return code;
-	}
+	   
+	   public LocalCodeDTO(int code, String name, String mapX, String mapY, int mLevel) {
+	      super();
+	      this.code = code;
+	      this.name = name;
+	      this.mapX = mapX;
+	      this.mapY = mapY;
+	      this.mLevel = mLevel;
+	   }
 
-	public void setCode(int code) {
-		this.code = code;
-	}
+	   public int getCode() {
+	      return code;
+	   }
 
-	public String getName() {
-		return name;
-	}
+	   public void setCode(int code) {
+	      this.code = code;
+	   }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+	   public String getName() {
+	      return name;
+	   }
 
+	   public void setName(String name) {
+	      this.name = name;
+	   }
+
+	   public String getMapX() {
+	      return mapX;
+	   }
+
+	   public void setMapX(String mapX) {
+	      this.mapX = mapX;
+	   }
+	   
+	   public String getMapY() {
+	      return mapY;
+	   }
+
+	   public void setMapY(String mapY) {
+	      this.mapY = mapY;
+	   }
+	   
+	   public int getMLevel() {
+	      return mLevel;
+	   }
+
+	   public void setMLevel(int mLevel) {
+	      this.mLevel = mLevel;
+	   }
 }

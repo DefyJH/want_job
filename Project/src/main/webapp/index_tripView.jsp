@@ -27,6 +27,9 @@
 	LocalCodeDAO localCodeDAO = new LocalCodeDAO();
 	List<LocalCodeDTO> localList = localCodeDAO.getLocalCodeList();
 
+	// 지역 좌표 가져오기 위한 변수
+    LocalCodeDTO local = localCodeDAO.getLocalCode(areaCode);
+	   
 	TravelDestinationDAO tdDAO = new TravelDestinationDAO();
 
 	List<TravelDestinationDTO> tdList = null;
@@ -134,8 +137,11 @@
 	<script>
 		var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
 		
-		var mapX = <%=Double.parseDouble(tdList.get(0).getMapX())%>;
-		var mapY = <%=Double.parseDouble(tdList.get(0).getMapY())%>;
+	    var mapX = <%=Double.parseDouble(local.getMapX())%>;
+	    var mapY = <%=Double.parseDouble(local.getMapY())%>;
+		
+<%-- 		var mapX = <%=Double.parseDouble(tdList.get(0).getMapX())%>; --%>
+<%-- 		var mapY = <%=Double.parseDouble(tdList.get(0).getMapY())%>; --%>
 
 		console.log(mapX);
 		console.log(mapY);
