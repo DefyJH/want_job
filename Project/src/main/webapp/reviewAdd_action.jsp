@@ -15,13 +15,11 @@
 		int contents_id = Integer.parseInt(request.getParameter("contents_id"));
 		String review_text = request.getParameter("review_text");
 		String review_image = request.getParameter("review_image");
-		int review_rating = Integer.parseInt(request.getParameter("review_rating"));
-
-	
+		int review_rating = Integer.parseInt(request.getParameter("review_rating"));		
+		
 		ReviewDAO reviewDAO = new ReviewDAO();
 		int result = reviewDAO.saveReview(user_code, contents_id, review_text, review_image, review_rating);
 
-		
 		if(result > 0) { %>
 		<script>
 			alert('리뷰 저장 성공');

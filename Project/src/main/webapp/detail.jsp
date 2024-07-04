@@ -363,7 +363,7 @@
 		<%
 		if (nickname != null && code != null) {
 		%>
-		<form class="reviewBox" action="reviewAdd_action.jsp" method="get">
+		<form class="reviewBox" action="reviewAdd_action.jsp" method="post">
 			<input type="hidden" name="user_code" value="<%=code%>"> <input
 				type="hidden" name="contents_id" value="<%=contentId%>">
 			<textarea placeholder="여행 후기를 남겨주세요." name="review_text"></textarea>
