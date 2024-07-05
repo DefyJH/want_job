@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원가입</title>
+<title>Travel For All</title>
 <link rel="stylesheet" type="text/css" href="./css/signup.css">
 </head>
 <body>
@@ -21,7 +21,7 @@
         </label><br>
         
         <label class="mainPW">
-        	PW : <input type="text" id="input_pw" name="user_pw" placeholder="영어+숫자+특수문자를 이용해 8자리를 입력해주세요.">
+        	PW : <input type="password" id="input_pw" name="user_pw" placeholder="영어+숫자+특수문자를 이용해 8자리를 입력해주세요.">
         </label ><br>
         
         <label class="mainName">
@@ -74,6 +74,11 @@
 			} 
 		} --%>
 		
+		
+		function fn_dbCheckId() {
+			let inputId = document.querySelector('#input_id').value;
+			location.href = "double_check.jsp?inputId="+inputId;
+		}
 
 		frm_signup.addEventListener('submit', (e)=>{
 			e.preventDefault(); //기본 이벤트 중지  submit 폼 전송 막기!

@@ -275,7 +275,7 @@
 .userReview {
 	padding: 10px;
 
-	margin-top: 5px;
+	margin-top: 10px;
 	margin-bottom: 10px;
 }
 
@@ -285,7 +285,7 @@
 	margin-bottom: 5px;
 }
 
-.userReview>span {
+.reviewSub {
 	font-size: 0.8rem;
 
 	color: gray;
@@ -372,4 +372,22 @@ hr {
 
 .gold {
 	color: gold;
+}
+
+.gray {
+	color: gray;
+}
+
+.font-size08 {
+	font-size : 0.8rem;
+}
+
+.reviewRating {
+	margin-bottom : 5px;
+	
+	display : inline-block;
+}
+
+.inlineBlock {
+	display : inline-block;
 }

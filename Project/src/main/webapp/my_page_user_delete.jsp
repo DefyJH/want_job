@@ -25,7 +25,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Travel For All</title>
 <link rel="stylesheet" type="text/css" href="./css/my_page.css">
 </head>
 <body>
@@ -39,7 +39,7 @@
 	%>
 	<div>
 		<h1>
-			<a id="gotoMain" href="index.jsp">메인<br />화면
+			<a id="gotoMain" href="index.jsp">Travel<br />For All
 			</a> <br /> <br /> <a href="my_page.jsp">MY PAGE</a>
 		</h1>
 	</div>
@@ -55,7 +55,7 @@
 		<div id="frm_deleteAccount">
 			<div id="deleteUser">
 				<h2>회원탈퇴</h2>
-				<label> 비밀번호 : <input type="text" id="input_pw">
+				<label> 비밀번호 : <input type="password" id="input_pw">
 				</label>
 				<button onclick="deleteButton()">탈퇴하기</button>
 			</div>

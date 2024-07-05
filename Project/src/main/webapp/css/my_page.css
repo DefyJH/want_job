@@ -78,6 +78,14 @@ input[type="text"] {
     border-radius: 4px;
 }
 
+input[type="password"] {
+    width: 50%; /* 너비를 50%로 조정 */
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
 button {
     padding: 10px;
     background-color: #007bff;
@@ -93,7 +101,7 @@ button:hover {
     background-color: #0056b3;
 }
 
-#reviewBox {
+.reviewBox {
 	width : 85%;
 	
 	border : 1px solid gray;
@@ -102,9 +110,18 @@ button:hover {
 	padding : 20px;
 	
 	margin-left : 10px;
+	margin-bottom : 10px;
 }
 
-#reviewBox > span {
+.reviewBox > span {
 	font-size : 0.8rem;
 	color : gray;
+}
+
+.gold {
+	color: gold;
+}
+
+.gray {
+	color: gray;
 }

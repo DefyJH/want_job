@@ -26,30 +26,29 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Travel For All</title>
 <link rel="stylesheet" type="text/css" href="./css/my_page.css">
 </head>
 <body>
 
 	<%
-		Integer code = (Integer) session.getAttribute("user_code");
-		int user_code = code;
+	Integer code = (Integer) session.getAttribute("user_code");
+	int user_code = code;
 
-		ReviewDAO rvDAO = new ReviewDAO();
-		List<ReviewDTO> rvList = null;
+	ReviewDAO rvDAO = new ReviewDAO();
+	List<ReviewDTO> rvList = rvDAO.findReviewByUserCode(user_code);
+	
 	%>
 
 	<div>
 		<h1>
-      	<a id="gotoMain" href="index.jsp">메인<br/>화면</a>
-      	<br/>
-      	<br/>
-			<a href="my_page.jsp">MY PAGE</a>
+			<a id="gotoMain" href="index.jsp">Travel<br />For All
+			</a> <br /> <br /> <a href="my_page.jsp">MY PAGE</a>
 		</h1>
 	</div>
 	<div class="sidebar">
 		<ul>
-      		<li><a href="my_page_user_data.jsp">회원정보확인</a></li>
+			<li><a href="my_page_user_data.jsp">회원정보확인</a></li>
 			<li><a href="my_page_user_updaet.jsp">회원정보수정</a></li>
 			<li><a href="my_page_user_delete.jsp">회원탈퇴</a></li>
 			<li><a href="my_page_user_review.jsp">나의 리뷰관리</a></li>
@@ -59,51 +58,111 @@
 		<div id="frm_manageReviews">
 			<h2>나의 리뷰관리</h2>
 
-			<% if(rvList == null ) { %>
-				<p>작성된 리뷰가 없습니다. 리뷰를 작성해주세요.</p>
-		
-			<% }  else {
-				
-				rvList = rvDAO.findReviewByUserCode(user_code);
+			<%
+			if (rvList == null) {
+			%>
+			<p>작성된 리뷰가 없습니다. 리뷰를 작성해주세요.</p>
 
-				List<Integer> rvContentId = new ArrayList<Integer>();
+			<%
+			} else {
 
-				for(ReviewDTO rv : rvList) {
-					rvContentId.add(rv.getContents_id());
-				}
+			rvList = rvDAO.findReviewByUserCode(user_code);
 
-				TravelDestinationDAO tdDAO = new TravelDestinationDAO();
-				List<TravelDestinationDTO> tdList = new ArrayList<TravelDestinationDTO>();
+			List<Integer> rvContentId = new ArrayList<Integer>();
 
-				for(int i=0; i<rvContentId.size(); i++) {
-					TravelDestinationDTO dto = tdDAO.findTravelDestinationByContentId(rvContentId.get(i));
-		
-					tdList.add(dto);
-				}
-				
-				for(int i=0; i<rvList.size(); i++) { %>
+			for (ReviewDTO rv : rvList) {
+				rvContentId.add(rv.getContents_id());
+			}
 
-				<div id="reviewBox" onclick="moveDetail()">
-					<input type="hidden" id="content_id"
-						value="<%=tdList.get(i).getContentid()%>">
-					<h3><%=tdList.get(i).getTitle()%></h3>
-					<p>✍<%=rvList.get(i).getReview_text()%></p>
-					<span> 작성날짜 : <%=ConvertDateUtil.convertLocalDateTimeToString4(rvList.get(i).getReview_date())%></span>
+			TravelDestinationDAO tdDAO = new TravelDestinationDAO();
+			List<TravelDestinationDTO> tdList = new ArrayList<TravelDestinationDTO>();
+
+			for (int i = 0; i < rvContentId.size(); i++) {
+				TravelDestinationDTO dto = tdDAO.findTravelDestinationByContentId(rvContentId.get(i));
+
+				tdList.add(dto);
+			}
+
+			for (int i = 0; i < rvList.size(); i++) {
+			%>
+
+			<div class="reviewBox" onclick="moveDetail()">
+				<input type="hidden" class="content_id"
+					value="<%=rvList.get(i).getContents_id()%>">
+				<h3><%=tdList.get(i).getTitle()%></h3>
+				<p>
+					✍<%=rvList.get(i).getReview_text()%></p>
+				<%
+				//리뷰 평점 100일 때
+				if (rvList.get(i).getReview_rating() == 100) {
+				%>
+				<div class="reviewRating">
+					<span class="gold">&#9733;</span> <span class="gold">&#9733;</span>
+					<span class="gold">&#9733; </span> <span class="gold">&#9733;</span>
+					<span class="gold">&#9733;</span>
 				</div>
+				<%
+				//리뷰 평점 80일 때
+				} else if (rvList.get(i).getReview_rating() == 80) {
+				%>
+				<div class="reviewRating">
+					<span class="gold">&#9733;</span> <span class="gold">&#9733;</span>
+					<span class="gold">&#9733; </span> <span class="gold">&#9733;</span>
+					<span class="gray">&#9733;</span>
+				</div>
+				<%
+				//리뷰 평점 60일 때
+				} else if (rvList.get(i).getReview_rating() == 60) {
+				%>
+				<div class="reviewRating">
+					<span class="gold">&#9733;</span> <span class="gold">&#9733;</span>
+					<span class="gold">&#9733; </span> <span class="gray">&#9733;</span>
+					<span class="gray">&#9733;</span>
+				</div>
+				<%
+				//리뷰 평점 40일 때
+				} else if (rvList.get(i).getReview_rating() == 40) {
+				%>
+				<div class="reviewRating">
+					<span class="gold">&#9733;</span> <span class="gold">&#9733;</span>
+					<span class="gray">&#9733; </span> <span class="gray">&#9733;</span>
+					<span class="gray">&#9733;</span>
+				</div>
+				<%
+				//리뷰 평점 20일 때
+				} else {
+				%>
+				<div class="reviewRating">
+					<span class="gold">&#9733;</span> <span class="gray">&#9733;</span>
+					<span class="gray">&#9733; </span> <span class="gray">&#9733;</span>
+					<span class="gray">&#9733;</span>
+				</div>
+				<%
+				}
+				%>
+				<span> 작성날짜 : <%=ConvertDateUtil.convertLocalDateTimeToString4(rvList.get(i).getReview_date())%></span>
+			</div>
 
-				<% } %>
+			<%
+			}
+			%>
 
-			<% } %>
+			<%
+			}
+			%>
 		</div>
 	</div>
 
 	<script>
-	function moveDetail() {
-		let contentId = document.querySelector('#content_id').value
-		
-		location.href = "detail.jsp?contentId="+contentId;
-	}
 	
+	let reviewBoxes = document.querySelectorAll('.reviewBox');
+    
+    reviewBoxes.forEach(function(reviewBox) {
+        reviewBox.addEventListener('click', function() {
+            let contentId = reviewBox.querySelector('.content_id').value;
+            location.href = "detail.jsp?contentId=" + contentId;
+        });
+    });
 	</script>
 
 </body>

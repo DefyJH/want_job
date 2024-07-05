@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Travel For All</title>
 </head>
 <body>
 	<%
@@ -28,14 +28,14 @@
    		
 		<script>
 			alert('회원정보 업데이트 성공');
-			location.href = "myPage_userUpdaet.jsp";
+			location.href = "my_page_user_data.jsp";
 		</script>
 
 	<% } else { %>
 
 		<script>
 			alert('회원정보 업데이트 실패');
-			location.href = "myPage_userUpdaet.jsp";
+			location.href = "my_page_user_updaet.jsp";
 			
 			console.log(<%=user_code%>)
 		</script>

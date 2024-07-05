@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Travel For All</title>
 </head>
 <body>
 <%
@@ -51,7 +51,7 @@
 	
 		<script>
 			alert('저장 성공');
-			location.href = 'signup.jsp'; //
+			location.href = 'index.jsp'; //
 		</script>
 	
 	<%

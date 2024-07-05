@@ -4,13 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Travel For All</title>
 <link rel="stylesheet" type="text/css" href="./css/my_page.css">
 </head>
 <body>
 	<div>
 		<h1>
-      	<a id="gotoMain" href="index.jsp">메인<br/>화면</a>
+      	<a id="gotoMain" href="index.jsp">Travel<br/>For All</a>
       	<br/>
       	<br/>
 			<a href="my_page.jsp">MY PAGE</a>
@@ -26,7 +26,7 @@
 	</div>
 	<div id="main-content">
 		<div id="frm_editProfile">
-			<form action="updateUser.jsp" method="post">
+			<form action="update_user.jsp" method="post">
 				<h2>회원정보수정</h2>
 				<label> 닉네임 : <input type="text" id="edit_nickname"
 					name="user_nickname">
@@ -38,7 +38,7 @@
 					name="user_email">
 				</label><br> <label> 주소 : <input type="text" id="edit_address"
 					name="user_address">
-				</label><br> <label> 비밀번호 : <input type="text" id="edit_pw"
+				</label><br> <label> 비밀번호 : <input type="password" id="edit_pw"
 					name="user_pw">
 				</label><br>
 				<button type="submit">수정하기</button>
@@ -47,20 +47,6 @@
 	</div>
 	
 	<script>
-	
-	    /* let inputNickName = document.querySelector('#edit_nickname').value.trim();
-	    let inputName = document.querySelector('#edit_name').value.trim();
-	    let inputTel = document.querySelector('#edit_tel').value.trim();
-	    let inputEmail = document.querySelector('#edit_email').value.trim();
-	    let inputAddress = document.querySelector('#edit_address').value.trim();
-	    let inputPw = document.querySelector('#edit_pw').value.trim();
-
-	    if (inputNickName === '' || inputName === '' || inputTel === '' || inputEmail === '' ||
-	        inputAddress === '' || inputPw === '') {
-	        alert('빈 칸이 있습니다. 모두 작성해주세요.');
-	    } */
-	
-		
 	
 	</script>
 </body>

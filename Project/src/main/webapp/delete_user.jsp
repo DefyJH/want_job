@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Travel For All</title>
 </head>
 <body>
 	<%
@@ -31,7 +31,7 @@
 		<script>
 			alert('회원탈퇴 실패');
 			
-			location.href = " myPage_userDelete.jsp ";
+			location.href = " my_page_user_delete.jsp ";
 		</script>
    	
    <% } %>

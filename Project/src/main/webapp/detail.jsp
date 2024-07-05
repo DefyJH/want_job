@@ -26,7 +26,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Travel For All</title>
 <link rel="stylesheet" href="./css/detail.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
@@ -138,12 +138,13 @@
 	%>
 
 	<div id="topNav">
-		<a id="gotoMain" href="index.jsp">메인화면</a>
+		<a id="gotoMain" href="index.jsp">Travel For All</a>
 		<div id=login>
 			<%
 			if (nickname != null && code != null) {
 			%>
-			<a href="myPage.jsp"> <span id='nicname'><%=nickname %></span> 님</a> | <a href="myPage.jsp">마이페이지</a> | <a href="logout_action.jsp">로그아웃</a>
+			<a href="my_page.jsp"> <span id='nicname'><%=nickname %></span> 님
+			</a> | <a href="my_page.jsp">마이페이지</a> | <a href="logout_action.jsp">로그아웃</a>
 			<%
 			} else {
 			%>
@@ -303,7 +304,7 @@
 				</div>
 				<%} %>
 
-
+<%-- 
 				<%if(di.getGuide_sign() != null || di.getGuide_video() != null
 						|| di.getHearingroom() != null || di.getHearinghandicapetc() != null) { %>
 				<div>
@@ -324,7 +325,7 @@
 					</ul>
 				</div>
 				<% } %>
-
+ --%>
 				<%if(di.getStroller() != null || di.getLactationroom() != null
 						|| di.getBabysparechair() != null || di.getInfantsfamily_etc() != null) { %>
 				<div>
@@ -378,15 +379,15 @@
 			</div>
 			<div class="rating">
 				평점 : <span class="star star1" onmouseover="highlightStar(1)"
-					onmouseout="resetStars()" onclick="rating(1)">&#9733;</span> <span
+					onmouseout="resetStars(1)" onclick="rating(1)">&#9733;</span> <span
 					class="star star2" onmouseover="highlightStar(2)"
-					onmouseout="resetStars()" onclick="rating(2)">&#9733;</span> <span
+					onmouseout="resetStars(2)" onclick="rating(2)">&#9733;</span> <span
 					class="star star3" onmouseover="highlightStar(3)"
-					onmouseout="resetStars()" onclick="rating(3)">&#9733;</span> <span
+					onmouseout="resetStars(3)" onclick="rating(3)">&#9733;</span> <span
 					class="star star4" onmouseover="highlightStar(4)"
-					onmouseout="resetStars()" onclick="rating(4)">&#9733;</span> <span
+					onmouseout="resetStars(4)" onclick="rating(4)">&#9733;</span> <span
 					class="star star5" onmouseover="highlightStar(5)"
-					onmouseout="resetStars()" onclick="rating(5)">&#9733;</span> <input
+					onmouseout="resetStars(5)" onclick="rating(5)">&#9733;</span> <input
 					type="hidden" name="review_rating" id="ratingInput">
 			</div>
 		</form>
@@ -431,8 +432,58 @@
 			<img src="./image/<%=reviewList.get(i).getReview_image()%>"
 				width="50%">
 			<% } %>
-			<p><%=reviewList.get(i).getReview_text()%></p>
-			<span><%=reviewNickname.get(i)%></span> <span> | </span> <span><%=ConvertDateUtil.convertLocalDateTimeToString4(reviewList.get(i).getReview_date())%></span>
+			<p class="inlineBlock"><%=reviewList.get(i).getReview_text()%></p> <p class="inlineBlock gray font-size08">   |   </p>
+			<%
+				//리뷰 평점 100일 때
+				if (reviewList.get(i).getReview_rating() == 100) {
+				%>
+			<div class="reviewRating">
+				<span class="gold">&#9733;</span> <span class="gold">&#9733;</span>
+				<span class="gold">&#9733; </span> <span class="gold">&#9733;</span>
+				<span class="gold">&#9733;</span>
+			</div>
+			<%
+				//리뷰 평점 80일 때
+				} else if (reviewList.get(i).getReview_rating() == 80) {
+				%>
+			<div class="reviewRating">
+				<span class="gold">&#9733;</span> <span class="gold">&#9733;</span>
+				<span class="gold">&#9733; </span> <span class="gold">&#9733;</span>
+				<span class="gray">&#9733;</span>
+			</div>
+			<%
+				//리뷰 평점 60일 때
+				} else if (reviewList.get(i).getReview_rating() == 60) {
+				%>
+			<div class="reviewRating">
+				<span class="gold">&#9733;</span> <span class="gold">&#9733;</span>
+				<span class="gold">&#9733; </span> <span class="gray">&#9733;</span>
+				<span class="gray">&#9733;</span>
+			</div>
+			<%
+				//리뷰 평점 40일 때
+				} else if (reviewList.get(i).getReview_rating() == 40) {
+				%>
+			<div class="reviewRating">
+				<span class="gold">&#9733;</span> <span class="gold">&#9733;</span>
+				<span class="gray">&#9733; </span> <span class="gray">&#9733;</span>
+				<span class="gray">&#9733;</span>
+			</div>
+			<%
+				//리뷰 평점 20일 때
+				} else {
+				%>
+			<div class="reviewRating">
+				<span class="gold">&#9733;</span> <span class="gray">&#9733;</span>
+				<span class="gray">&#9733; </span> <span class="gray">&#9733;</span>
+				<span class="gray">&#9733;</span>
+			</div>
+			<%
+				}
+				%>
+			<div>
+				<span class="reviewSub"><%=reviewNickname.get(i)%></span> <span class="reviewSub"> | </span> <span class="reviewSub"><%=ConvertDateUtil.convertLocalDateTimeToString4(reviewList.get(i).getReview_date())%></span>
+			</div>
 		</div>
 		<hr />
 
@@ -640,13 +691,13 @@
 	        }
 	    }
 		
-		function resetStars() {
+		function resetStars(ratingValue) {
 	        for (var i = 1; i <= 5; i++) {
 	            var star = document.querySelector('.star' + i);
 	            star.classList.remove('gold');
 	        }
 	        // 선택된 별점만 다시 gold로 표시
-	        for (var i = 1; i <= selectedRating; i++) {
+	        for (var i = 1; i <= ratingValue; i++) {
 	            var star = document.querySelector('.star' + i);
 	            star.classList.add('gold');
 	        }
